@@ -14,10 +14,14 @@ export default createTheme({
     },
     primary: {
       main: dark,
+      default: '#000'
     },
     secondary: {
       main: "#fff",
       transparent50: alpha(light, 0.4),
     },
+    background: {
+      default: dark,
+    }
   },
 });

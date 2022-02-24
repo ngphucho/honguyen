@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appbarMargin: {
     paddingTop: theme.mixins.toolbar.minHeight + 8,
+    marginBottom: "1rem",
   },
 }));
 
@@ -53,7 +54,7 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1000);
   const handleChange = (e, value) => {
     setValue(value);
   };
@@ -101,6 +102,7 @@ export default function Header() {
       index = 0;
     }
     setValue(tabInfo[index].index);
+    // handleChange(tabInfo[index].index);
   };
 
   useEffect(() => {
