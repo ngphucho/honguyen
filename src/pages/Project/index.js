@@ -8,13 +8,13 @@ export default function Project() {
   return (
     <AnimatedPage>
       <div className="project">
-        <Container>
-          <Grid container rowSpacing={1}>
+        {/* <Container> */}
+          <Grid container>
             {Projects.map((project, i) => (
               <Product key={i} project={project} i={i} />
             ))}
           </Grid>
-        </Container>
+        {/* </Container> */}
       </div>
     </AnimatedPage>
   );

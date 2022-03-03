@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import AppBar from "@mui/material/AppBar";
@@ -8,9 +7,11 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { makeStyles } from "@mui/styles";
 import { useNavigate, useLocation } from "react-router-dom";
+import MyDrawer from "../MyDrawer";
+import { Typography } from "@mui/material";
 
 function ElevationScroll(props) {
-  const { children, window } = props;
+  const { children } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -23,11 +24,6 @@ function ElevationScroll(props) {
 
 const useStyles = makeStyles((theme) => ({
   tabContainer: {
-    // backgroundColor: theme.palette.secondary.transparent50,
-    // marginLeft: "auto",
-    // marginRight: "auto",
-    // borderRadius: "5px",
-    // backgroundColor: theme.palette.secondary.transparent50,
     flex: 1,
     display: "flex",
     justifyContent: "center",
@@ -45,28 +41,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appbarMargin: {
-    paddingTop: theme.mixins.toolbar.minHeight + 8,
-    marginBottom: "1rem",
+    paddingTop: theme.mixins.toolbar.minHeight,
   },
 }));
 
-export default function Header() {
+export default function Header({ value, handleChange, tabInfo }) {
   const location = useLocation();
   const navigate = useNavigate();
   const classes = useStyles();
-  const [value, setValue] = useState(1000);
-  const handleChange = (e, value) => {
-    setValue(value);
-  };
-
-  const tabInfo = [
-    { label: "home", index: 0, to: "/home" },
-    { label: "about", index: 1, to: "/about" },
-    { label: "skill", index: 2, to: "/skill" },
-    { label: "project", index: 3, to: "/project" },
-    { label: "contact", index: 4, to: "/contact" },
-    { label: "tmp", index: 5, to: "/tmp" },
-  ];
 
   const tabs = (
     <React.Fragment>
@@ -83,6 +65,7 @@ export default function Header() {
           <Tab
             disableTouchRipple
             key={tab.index}
+            value={tab.index}
             className={classes.tab}
             label={tab.label}
             onClick={() => {
@@ -94,20 +77,11 @@ export default function Header() {
     </React.Fragment>
   );
 
-  const findIndexByLocation = (location) => {
-    let index = tabInfo.findIndex((tab) => {
-      return tab.to === location;
-    });
-    if (index < 0) {
-      index = 0;
-    }
-    setValue(tabInfo[index].index);
-    // handleChange(tabInfo[index].index);
-  };
-
-  useEffect(() => {
-    findIndexByLocation(location.pathname);
-  }, [location]);
+  const drawer = (
+    <React.Fragment>
+      <MyDrawer dataList={tabInfo} index={value} />
+    </React.Fragment>
+  );
 
   return (
     <div className="header">
@@ -115,7 +89,11 @@ export default function Header() {
         <AppBar>
           <Toolbar disableGutters>
             <div className={classes.tabContainer}>{tabs}</div>
+            <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
+              {location.pathname.replace("/", "")}
+            </Typography>
           </Toolbar>
+          {drawer}
         </AppBar>
       </ElevationScroll>
       <div className={classes.appbarMargin}></div>

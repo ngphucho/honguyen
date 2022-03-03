@@ -1,5 +1,15 @@
-import { Avatar, Grid, Icon, Stack } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Avatar,
+  Grid,
+  Icon,
+  List,
+  ListItemButton,
+  ListItemText,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import FacebookIcon from "../../assets/icons/icons8-facebook.svg";
 import ZaloIcon from "../../assets/icons/icons8-zalo.svg";
@@ -9,8 +19,11 @@ import animationData from "../../assets/lotties/software-development.json";
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: "#191919",
     minHeight: 64,
+    "&.MuiGrid-root": {
+      flexDirection: "column",
+    },
   },
   avatarContainer: {
     "&.MuiAvatar-root": {
@@ -27,11 +40,11 @@ const useStyles = makeStyles((theme) => ({
   },
   imgContainer: {
     width: "100%",
-
   },
 }));
 
-export default function Footer() {
+export default function Footer({ value: index, handleChange, tabInfo: menu }) {
+  const navigate = useNavigate();
   const classes = useStyles();
   const defaultOtions = {
     loop: true,
@@ -42,12 +55,42 @@ export default function Footer() {
     },
   };
   return (
-    <div>
+    <div className="footer">
       <Grid container className={classes.footerContainer}>
         <Grid item xs>
           <Lottie options={defaultOtions} height={100} width={100} />
         </Grid>
-        <Grid item container xs alignItems="center">
+        <Grid
+          item
+          container
+          xs
+          sx={{ alignItems: "center", justifyContent: "center" }}
+        >
+          <List sx={{ display: "flex" }}>
+            {menu.map((item) => (
+              <ListItemButton
+                key={item.index}
+                onClick={() => {
+                  navigate(item.to);
+                }}
+                selected={item.index === index}
+                disabled={item.index === index}
+              >
+                <ListItemText
+                  sx={{ textTransform: "capitalize", color: "#fff" }}
+                >
+                  {item.label}
+                </ListItemText>
+              </ListItemButton>
+            ))}
+          </List>
+        </Grid>
+        <Grid 
+          item
+          container
+          xs
+          sx={{ alignItems: "center", justifyContent: "center", padding: 2 }}
+        >
           <Stack direction="row" spacing={2}>
             <Avatar className={classes.avatarContainer}>
               <Icon className={classes.iconContainer}>
@@ -65,6 +108,9 @@ export default function Footer() {
               </Icon>
             </Avatar>
           </Stack>
+        </Grid>
+        <Grid item container sx={{justifyContent:'center', padding:2, bgcolor:'#424242'}}>
+          <Typography>Copyright</Typography>
         </Grid>
       </Grid>
     </div>

@@ -1,78 +1,161 @@
+import React from "react";
 import {
-  Button,
   Container,
-  Fab,
-  FormGroup,
   Grid,
-  Input,
+  Link,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  TextareaAutosize,
-  TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import { makeStyles } from "@mui/styles";
+import { useTheme } from "@mui/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
+import EmailIcon from "@mui/icons-material/Email";
+import ContactForm from "../../components/ContactForm";
+
+const useStyles = makeStyles((theme) => ({
+  contact: {
+    minHeight: "calc(100vh - 64px - 3rem)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  mainGrid: {
+    backgroundColor: theme.palette.common.bg1,
+    backgroundClip: "content-box",
+    padding: "0 200px",
+  },
+  formGroup: {
+    "&.MuiFormGroup-root": {
+      paddingBottom: 10,
+    },
+  },
+  leftColumn: {
+    boxSizing: "border-box",
+    padding: 20,
+    backgroundColor: "#252525",
+    margin: "40px 50px 40px -50px",
+    height: "calc(100% - 80px)",
+    [theme.breakpoints.down("md")]: {
+      marginRight: 30,
+      marginLeft: -30,
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: 40,
+    },
+  },
+  rightColumn: {
+    "&.MuiGrid-root": {
+      padding: "60px 40px",
+      [theme.breakpoints.down("sm")]: {
+        padding: "0px 40px 40px 40px",
+      },
+    },
+  },
+  listItemIcon: {
+    "&.MuiListItemIcon-root": {
+      minWidth: 40,
+      [theme.breakpoints.down("sm")]: {
+        minWidth: 20,
+      },
+    },
+  },
+  itemText: {
+    color: theme.palette.common.textColor1,
+    "& .MuiTypography-root": {
+      fontSize: "0.9rem",
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "0.8rem",
+      },
+      [theme.breakpoints.down("md")]: {
+        fontSize: "0.7rem",
+      },
+    },
+    "&.MuiSvgIcon-root": {
+      width: "0.9rem",
+      height: "0.9rem",
+    },
+    "&.MuiLink-root": {
+      color: "inherit",
+      "&:hover": {
+        textDecoration: "none",
+      },
+    },
+  },
+}));
+
 export default function Contact() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const matchLG = useMediaQuery(theme.breakpoints.up("lg"));
+  const matchMD = useMediaQuery(theme.breakpoints.up("md"));
+  const matchSM = useMediaQuery(theme.breakpoints.up("sm"));
+
   return (
-    <div className="contact">
-      <Container>
-        <Grid container>
+    <div className={classes.contact}>
+      {/* <Container> */}
+        <Grid
+          px={matchLG ? "200px" : matchMD ? "100px" : matchSM ? "50px" : 0}
+          container
+          className={classes.mainGrid}
+        >
           {/* Left Column */}
-          <Grid item>
-            <div>
-              <Typography variant="h4">Contact Me</Typography>
+          <Grid item sm={5} xs={12}>
+            <div className={classes.leftColumn}>
+              <Typography
+                textAlign={!matchSM ? "center" : "left"}
+                variant="h5"
+                color="#bdbdbd"
+              >
+                Contact Me
+              </Typography>
               <List>
-                <ListItem>
-                  <ListItemIcon>
-                    <LocationOnIcon />
+                <ListItem disableGutters={!matchMD}>
+                  <ListItemIcon className={classes.listItemIcon}>
+                    <LocationOnIcon className={classes.itemText} />
                   </ListItemIcon>
-                  <ListItemText>
+                  <ListItemText className={classes.itemText}>
                     Số 33, khu 2, ấp Phước Hội, xã Long Hưng, Biên Hòa, Đồng Nai
                   </ListItemText>
                 </ListItem>
 
-                <ListItem>
-                  <ListItemIcon>
-                    <LocationOnIcon />
+                <ListItem disableGutters={!matchMD}>
+                  <ListItemIcon className={classes.listItemIcon}>
+                    <EmailIcon className={classes.itemText} />
                   </ListItemIcon>
-                  <ListItemText>ngphucho@gmail.com</ListItemText>
+                  <ListItemText className={classes.itemText}>
+                    <Link
+                      className={classes.itemText}
+                      href="mailto:ngphucho@gmail.com"
+                    >
+                      ngphucho@gmail.com
+                    </Link>
+                  </ListItemText>
                 </ListItem>
 
-                <ListItem>
-                  <ListItemIcon>
-                    <LocationOnIcon />
+                <ListItem disableGutters={!matchMD}>
+                  <ListItemIcon className={classes.listItemIcon}>
+                    <PhoneIphoneIcon className={classes.itemText} />
                   </ListItemIcon>
-                  <ListItemText>0356046662</ListItemText>
+                  <ListItemText className={classes.itemText}>
+                    <Link className={classes.itemText} href="tel:0356046662">
+                      0356046662
+                    </Link>
+                  </ListItemText>
                 </ListItem>
               </List>
             </div>
           </Grid>
           {/* Right column */}
-          <Grid item>
-            <Typography variant="h4">Get in Touch</Typography>
-            <Typography variant="caption">
-              Feel free to drop me a line below!
-            </Typography>
-            <form>
-              <FormGroup>
-                <Input type="text" />
-              </FormGroup>
-              <FormGroup>
-                <Input type="email" />
-              </FormGroup>
-              <FormGroup>
-                <TextareaAutosize />
-              </FormGroup>
-              <Fab variant="extended" color="primary">
-                Send
-              </Fab>
-            </form>
+          <Grid item sm={7} xs={12} className={classes.rightColumn}>
+            <ContactForm />
           </Grid>
         </Grid>
-      </Container>
+      {/* </Container> */}
     </div>
   );
 }
