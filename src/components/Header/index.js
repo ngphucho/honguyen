@@ -105,7 +105,7 @@ export default function Header({ value, handleChange, tabInfo }) {
                     position: "relative",
                   }}
                 >
-                  <div style={{ position: "absolute", left: 0 }}>{drawer}</div>
+                  <div style={{ position: "absolute", left: -12.375 }}>{drawer}</div>
                   <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
                     {location.pathname.replace("/", "")}
                   </Typography>
