@@ -16,8 +16,10 @@ const useStyles = makeStyles((theme) => ({
   detailContainer: {
     "&.MuiGrid-root": {
       // flex: 9,
-      height: "calc(35vw - 50px)",
-      padding: 20,
+      height: "calc(35vw - 40px - 50px)",
+      padding: "0 20px",
+      marginTop: 20,
+      marginBottom: 20,
       boxSizing: "border-box",
       overflowY: "auto",
       "&::-webkit-scrollbar, &::-webkit-scrollbar-thumb": {
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: "inset 0 0 0 10px #bdbdbd",
       },
       [theme.breakpoints.down("md")]: {
-        height: "40vw",
+        height: "calc(40vw - 50px)",
       },
     },
   },

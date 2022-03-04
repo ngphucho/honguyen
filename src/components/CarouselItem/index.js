@@ -9,26 +9,29 @@ const useStyles = makeStyles((theme) => ({
     height: "35vw",
     overflow: "hidden",
     borderRadius: 0,
-    // [theme.breakpoints.down("md")]: {
-    //   height: 'calc(40vh + 50px)',
-    // },
+    [theme.breakpoints.down("sm")]: {
+      height: "50vw",
+    },
   },
   mainDiv: {
     position: "relative",
     height: "35vw",
-    // [theme.breakpoints.down("md")]: {
-    //   height: 'calc(40vh + 50px)',
-    // },
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    [theme.breakpoints.down("sm")]: {
+      height: "50vw",
+    },
   },
   box: {
     background: "rgb(224,224,224)",
     background:
       "linear-gradient(90deg, rgba(224,224,224,1) 0%, rgba(245,245,245,0.5) 25%, rgba(255,255,255,0.1) 100%)",
     position: "absolute",
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
+    top: -1,
+    left: -1,
+    bottom: -1,
+    right: -1,
     [theme.breakpoints.down("sm")]: {
       background:
         "linear-gradient(0, rgba(224,224,224,1) 0%, rgba(245,245,245,0.5) 25%, rgba(255,255,255,0.1) 100%)",

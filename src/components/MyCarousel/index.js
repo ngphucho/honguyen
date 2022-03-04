@@ -5,7 +5,7 @@ import CarouselItem from "../CarouselItem";
 export default function MyCarousel({ items, index }) {
   return (
     <Carousel
-      autoPlay={true}
+      autoPlay={false}
       indicators={false}
       animation="slide"
     >
