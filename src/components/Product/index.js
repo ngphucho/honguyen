@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
       "&::-webkit-scrollbar-thumb": {
         boxShadow: "inset 0 0 0 10px #bdbdbd",
       },
-      [theme.breakpoints.down("md")]: {
+      [theme.breakpoints.down("sm")]: {
         height: "calc(40vw - 50px)",
       },
     },
