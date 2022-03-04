@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -7,7 +7,9 @@ import {
   List,
   ListItemButton,
   ListItemText,
+  IconButton,
 } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
       },
       "&.Mui-selected": {
         background: "black",
-        
       },
     },
   },
@@ -72,29 +73,15 @@ export default function MyDrawer({ dataList, index }) {
   );
 
   return (
-    <div>
-      <Button
-        color="info"
+    <React.Fragment>
+      <IconButton
+        color="secondary"
         onClick={() => {
           setOpen(true);
         }}
-        style={{
-          position: "fixed",
-          left: 0,
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          // backgroundColor: alpha("#fff", 0.3),
-          background: "radial-gradient(#838383, #212121)",
-          boxShadow:
-            "rgba(136, 165, 191, 0.3) 6px 2px 16px 0px, rgba(255, 255, 255, 0.5) -6px -2px 16px 0px",
-          padding: "auto",
-          width: 70,
-          height: 70,
-          borderRadius: "50%",
-        }}
       >
-        {">>"}
-      </Button>
+        <MenuIcon fontSize="large" />
+      </IconButton>
       <Drawer
         PaperProps={{
           style: {
@@ -112,6 +99,6 @@ export default function MyDrawer({ dataList, index }) {
       >
         {list}
       </Drawer>
-    </div>
+    </React.Fragment>
   );
 }

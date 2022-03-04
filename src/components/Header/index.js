@@ -8,7 +8,9 @@ import Tab from "@mui/material/Tab";
 import { makeStyles } from "@mui/styles";
 import { useNavigate, useLocation } from "react-router-dom";
 import MyDrawer from "../MyDrawer";
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
+import { useTheme } from "@mui/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -49,6 +51,8 @@ export default function Header({ value, handleChange, tabInfo }) {
   const location = useLocation();
   const navigate = useNavigate();
   const classes = useStyles();
+  const theme = useTheme();
+  const matchMD = useMediaQuery(theme.breakpoints.up("md"));
 
   const tabs = (
     <React.Fragment>
@@ -88,12 +92,27 @@ export default function Header({ value, handleChange, tabInfo }) {
       <ElevationScroll>
         <AppBar>
           <Toolbar disableGutters>
-            <div className={classes.tabContainer}>{tabs}</div>
-            <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
-              {location.pathname.replace("/", "")}
-            </Typography>
+            {matchMD ? (
+              <div className={classes.tabContainer}>{tabs}</div>
+            ) : (
+              <Container>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                    position: "relative",
+                  }}
+                >
+                  <div style={{ position: "absolute", left: 0 }}>{drawer}</div>
+                  <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
+                    {location.pathname.replace("/", "")}
+                  </Typography>
+                </div>
+              </Container>
+            )}
           </Toolbar>
-          {drawer}
         </AppBar>
       </ElevationScroll>
       <div className={classes.appbarMargin}></div>
