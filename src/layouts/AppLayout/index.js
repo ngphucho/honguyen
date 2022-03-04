@@ -8,8 +8,31 @@ import { Outlet } from "react-router-dom";
 import { Container } from "@mui/material";
 import { useTheme } from "@mui/styles";
 import { useMediaQuery } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  "@global": {
+    "*::-webkit-scrollbar": {
+      width: "0.5em",
+    },
+    "*::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+    },
+    "*::-webkit-scrollbar-thumb": {
+      backgroundColor: "#9e9e9e",
+      // outline: "1px solid slategrey",
+    },
+  },
+
+  outlet: {
+    minHeight: "calc(100vh - 64px - 100px - 2rem)",
+    padding: "1.5rem 0",
+    backgroundColor: "#212121",
+  },
+}));
 
 export default function AppLayout() {
+  const classes = useStyles();
   const theme = useTheme();
   const matchSM = theme.breakpoints.up("sm");
   const location = useLocation();
@@ -32,15 +55,9 @@ export default function AppLayout() {
     findIndexByLocation(location.pathname);
   }, [location]);
   return (
-    <div>
+    <div className={classes.mainDiv}>
       <Header value={value} handleChange={handleChange} tabInfo={tabInfo} />
-      <div
-        style={{
-          minHeight: "calc(100vh - 64px - 100px - 2rem)",
-          padding: "1.5rem 0",
-          backgroundColor: "#212121",
-        }}
-      >
+      <div className={classes.outlet}>
         <Container>
           <Outlet />
         </Container>

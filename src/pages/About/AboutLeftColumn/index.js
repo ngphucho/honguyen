@@ -22,8 +22,26 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { useTheme } from "@mui/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
+  mainGrid: {
+    "&.MuiGrid-root": {
+      width: "100%",
+      position: "sticky",
+      top: 64,
+      left: 0,
+      height: "calc(100vh - 24px - 64px)",
+      minHeight: 537,
+      // overflowY: 'auto',
+      [theme.breakpoints.down("sm")]: {
+        position: "static",
+        // overflowY: "unset",
+        height: "auto",
+      },
+    },
+  },
   avatar: {
     "&.MuiAvatar-root": {
       backgroundColor: theme.palette.common.bg2,
@@ -126,10 +144,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AboutLeftColumn() {
+  const theme = useTheme();
+  const matchSM = useMediaQuery(theme.breakpoints.up("sm"));
   const classes = useStyles();
   const navigate = useNavigate();
   return (
-    <Grid item sx={{ width: "100%" }}>
+    <Grid item className={classes.mainGrid}>
       <Card sx={{ backgroundColor: "transparent", boxShadow: 0 }}>
         <CardContent>
           <Grid container flexDirection={"column"}>
