@@ -20,7 +20,6 @@ const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Project = lazy(() => import("./pages/Project"));
-// const Skill = lazy(() => import("./pages/Skill"));
 
 function App() {
   return (
@@ -38,7 +37,7 @@ function App() {
               <Route
                 path="home"
                 element={
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={null}>
                     <Home />
                   </Suspense>
                 }
@@ -46,23 +45,15 @@ function App() {
               <Route
                 path="about"
                 element={
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={null}>
                     <About />
                   </Suspense>
                 }
               />
-              {/* <Route
-            path="skill"
-            element={
-              <Suspense fallback={<Loading />}>
-                <Skill />
-              </Suspense>
-            }
-          /> */}
               <Route
                 path="project"
                 element={
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={null}>
                     <Project />
                   </Suspense>
                 }
@@ -70,7 +61,7 @@ function App() {
               <Route
                 path="contact"
                 element={
-                  <Suspense fallback={<Loading />}>
+                  <Suspense fallback={null}>
                     <Contact />
                   </Suspense>
                 }

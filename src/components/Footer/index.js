@@ -4,6 +4,7 @@ import {
   Avatar,
   Grid,
   Icon,
+  Link,
   List,
   ListItemButton,
   ListItemText,
@@ -85,32 +86,47 @@ export default function Footer({ value: index, handleChange, tabInfo: menu }) {
             ))}
           </List>
         </Grid>
-        <Grid 
+        <Grid
           item
           container
           xs
           sx={{ alignItems: "center", justifyContent: "center", padding: 2 }}
         >
           <Stack direction="row" spacing={2}>
-            <Avatar className={classes.avatarContainer}>
-              <Icon className={classes.iconContainer}>
-                <img className={classes.imgContainer} src={FacebookIcon} />
-              </Icon>
-            </Avatar>
-            <Avatar className={classes.avatarContainer}>
-              <Icon className={classes.iconContainer}>
-                <img className={classes.imgContainer} src={GithubIcon} />
-              </Icon>
-            </Avatar>
-            <Avatar className={classes.avatarContainer}>
-              <Icon className={classes.iconContainer}>
-                <img className={classes.imgContainer} src={ZaloIcon} />
-              </Icon>
-            </Avatar>
+            <Link
+              href="https://www.facebook.com/nguyen.phuc.ho.91"
+              target="_blank"
+            >
+              <Avatar className={classes.avatarContainer}>
+                <Icon className={classes.iconContainer}>
+                  <img className={classes.imgContainer} src={FacebookIcon} />
+                </Icon>
+              </Avatar>
+            </Link>
+            <Link href="https://github.com/ngphucho" target="_blank">
+              <Avatar className={classes.avatarContainer}>
+                <Icon className={classes.iconContainer}>
+                  <img className={classes.imgContainer} src={GithubIcon} />
+                </Icon>
+              </Avatar>
+            </Link>
+            <Link href="https://zalo.me/0356046662" target="_blank">
+              <Avatar className={classes.avatarContainer}>
+                <Icon className={classes.iconContainer}>
+                  <img className={classes.imgContainer} src={ZaloIcon} />
+                </Icon>
+              </Avatar>
+            </Link>
           </Stack>
         </Grid>
-        <Grid item container sx={{justifyContent:'center', padding:2, bgcolor:'#424242'}}>
-          <Typography>Copyright</Typography>
+        <Grid
+          item
+          container
+          sx={{ justifyContent: "center", padding: 2, bgcolor: "#424242" }}
+        >
+          <Typography color='lightgrey' fontFamily="monospace">
+            © 2022 Nguyễn Phúc Hồ
+          </Typography>
         </Grid>
       </Grid>
     </div>
