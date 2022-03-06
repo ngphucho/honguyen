@@ -27,7 +27,7 @@ export default function Project() {
   if (error) {
     return <div>Error:{error.message}</div>;
   } else if (!isLoaded) {
-    return <Loading />;
+    return <div />;
   } else {
     return (
       <AnimatedPage>

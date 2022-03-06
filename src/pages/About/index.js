@@ -39,7 +39,7 @@ export default function About() {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <Loading />;
+    return <div />;
   } else {
     return (
       <AnimatedPage>
