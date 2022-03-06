@@ -143,9 +143,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AboutLeftColumn() {
+export default function AboutLeftColumn({ data }) {
   const theme = useTheme();
-  const matchSM = useMediaQuery(theme.breakpoints.up("sm"));
   const classes = useStyles();
   const navigate = useNavigate();
   return (
@@ -165,7 +164,7 @@ export default function AboutLeftColumn() {
                   sx={{ fontSize: 20, margin: "10px auto 0 auto" }}
                   textAlign="center"
                 >
-                  Nguyễn Phúc Hồ
+                  {data.name}
                 </Typography>
               </Grid>
               <Grid item>
@@ -174,7 +173,7 @@ export default function AboutLeftColumn() {
                   sx={{ fontSize: 14 }}
                   textAlign="center"
                 >
-                  Lập trình viên Frontend
+                  {data.major}
                 </Typography>
               </Grid>
             </Grid>
@@ -188,7 +187,7 @@ export default function AboutLeftColumn() {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText className={classes.listItemTextContainer}>
-                  Nam
+                  {data.gender}
                 </ListItemText>
               </ListItem>
               {/* sinh nhat */}
@@ -199,7 +198,7 @@ export default function AboutLeftColumn() {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText className={classes.listItemTextContainer}>
-                  10-05-1991
+                  {data.birthday}
                 </ListItemText>
               </ListItem>
               {/* so dien thoai */}
@@ -210,7 +209,7 @@ export default function AboutLeftColumn() {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText className={classes.listItemTextContainer}>
-                  0356 046 662
+                  {data.phoneNumber}
                 </ListItemText>
               </ListItem>
               {/* email */}
@@ -221,7 +220,7 @@ export default function AboutLeftColumn() {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText className={classes.listItemTextContainer}>
-                  ngphucho@gmail.com
+                  {data.email}
                 </ListItemText>
               </ListItem>
               {/* dia chi */}
@@ -232,7 +231,7 @@ export default function AboutLeftColumn() {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText className={classes.listItemTextContainer}>
-                  Biên Hòa - Đồng Nai
+                  {data.address}
                 </ListItemText>
               </ListItem>
             </List>

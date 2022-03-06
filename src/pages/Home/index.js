@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import AnimatedPage from "../../components/AnimatedPage";
 
 export default function Home() {
   return (
-    <div>Home</div>
-  )
+    <AnimatedPage>
+      <div>Home</div>
+    </AnimatedPage>
+  );
 }

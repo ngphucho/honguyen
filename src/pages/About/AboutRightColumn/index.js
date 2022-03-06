@@ -109,6 +109,9 @@ const useStyles = makeStyles((theme) => ({
       left: 0,
       transform: "translate(-50%, -50%)",
     },
+    "&:last-child": {
+      marginBottom: 0,
+    },
   },
   boxContainerLine1: {
     "&.MuiTypography-root": {
@@ -125,7 +128,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AboutRightColumn() {
+export default function AboutRightColumn({ data }) {
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -133,15 +136,14 @@ export default function AboutRightColumn() {
       <div className={classes.row}>
         <div className={classes.cardContainer}>
           <Card variant="outlined" className={classes.card}>
-            <Typography className={classes.cardTitle}>Giới thiệu</Typography>
-            <Typography sx={{ textAlign: "justify" }}>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis
-              sint tenetur cumque officiis quidem accusamus laboriosam deleniti
-              nihil perspiciatis totam ad possimus obcaecati consequuntur ullam
-              nesciunt architecto ex, blanditiis aliquid dolorem a ratione
-              quaerat? Voluptate iure, non soluta rem voluptatum sint quo,
-              voluptatibus tempora eius doloribus eos ipsa quas accusamus?
+            <Typography className={classes.cardTitle}>
+              {data.intro.title}
             </Typography>
+            {data.intro.content.map((item, i) => (
+              <Typography key={i} sx={{ textAlign: "justify" }}>
+                {item}
+              </Typography>
+            ))}
           </Card>
         </div>
       </div>
@@ -151,16 +153,13 @@ export default function AboutRightColumn() {
         <div className={classes.cardContainer}>
           <Card variant="outlined" className={classes.card}>
             <Typography className={classes.cardTitle}>
-              Mục tiêu nghề nghiệp
+              {data.careerGoal.title}
             </Typography>
-            <Typography sx={{ textAlign: "justify" }}>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis
-              sint tenetur cumque officiis quidem accusamus laboriosam deleniti
-              nihil perspiciatis totam ad possimus obcaecati consequuntur ullam
-              nesciunt architecto ex, blanditiis aliquid dolorem a ratione
-              quaerat? Voluptate iure, non soluta rem voluptatum sint quo,
-              voluptatibus tempora eius doloribus eos ipsa quas accusamus?
-            </Typography>
+            {data.careerGoal.content.map((item, i) => (
+              <Typography key={i} sx={{ textAlign: "justify" }}>
+                {item}
+              </Typography>
+            ))}
           </Card>
         </div>
       </div>
@@ -169,23 +168,20 @@ export default function AboutRightColumn() {
       <div className={classes.row}>
         <div className={classes.cardContainer}>
           <Card variant="outlined" className={classes.card}>
-            <Typography className={classes.cardTitle}>Học Vấn</Typography>
-            <Box className={classes.boxContainer}>
-              <Typography className={classes.boxContainerLine1}>
-                Dai Hoc Sai Gon
-              </Typography>
-              <Typography className={classes.boxContainerLine2}>
-                Ky su cong nghe thong tin
-              </Typography>
-            </Box>
-            <Box className={classes.boxContainer}>
-              <Typography className={classes.boxContainerLine1}>
-                Dai Hoc Sai Gon
-              </Typography>
-              <Typography className={classes.boxContainerLine2}>
-                Ky su cong nghe thong tin
-              </Typography>
-            </Box>
+            <Typography className={classes.cardTitle}>
+              {data.education.title}
+            </Typography>
+            {data.education.content.map((item, i) => (
+              <Box key={i} className={classes.boxContainer}>
+                <Typography className={classes.boxContainerLine1}>
+                  {item.schoolName}
+                </Typography>
+                <Typography className={classes.boxContainerLine2}>
+                  {item.major}
+                </Typography>
+                <Typography variant="caption">{item.year}</Typography>
+              </Box>
+            ))}
           </Card>
         </div>
       </div>
@@ -194,132 +190,40 @@ export default function AboutRightColumn() {
       <div className={classes.row}>
         <Grid item container spacing={3}>
           {/* ngon ngu lap trinh */}
-          <Grid className={classes.gridColumn} item xs={12} md={4}>
-            <div className={classes.cardContainer}>
-              <Card variant="outlined" className={classes.card}>
-                <Typography className={classes.cardTitle}>
-                  Ngôn ngữ lập trình
-                </Typography>
-                <List>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <CodeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="HTML" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <CodeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="CSS" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <CodeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="JavaScript" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <CodeIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="C#" />
-                  </ListItem>
-                </List>
-              </Card>
-            </div>
-          </Grid>
-          {/* frame work */}
-          <Grid className={classes.gridColumn} item xs={12} md={4}>
-            <div className={classes.cardContainer}>
-              <Card variant="outlined" className={classes.card}>
-                <Typography className={classes.cardTitle}>
-                  Frame Work
-                </Typography>
-                <List>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar variant="square">
-                        {/* <BallotIcon /> */}
-                        <Icon sx={{ textAlign: "center" }}>
-                          <img
-                            alt="icon"
-                            src={BoostrapIcon}
-                            style={{ height: "100%" }}
-                          />
-                        </Icon>
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="Bootstrap" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar variant="square">
-                        {/* <MuiIcon /> */}
-                        {/* <SvgIcon component={MuiIcon} /> */}
-                        <Icon sx={{ textAlign: "center" }}>
-                          <img
-                            alt="icon"
-                            src={MuiIcon}
-                            style={{ height: "100%" }}
-                          />
-                        </Icon>
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="Meterial UI" />
-                  </ListItem>
-                </List>
-              </Card>
-            </div>
-          </Grid>
-          {/* frame work 2*/}
-          <Grid className={classes.gridColumn} item xs={12} md={4}>
-            <div className={classes.cardContainer}>
-              <Card variant="outlined" className={classes.card}>
-                <Typography className={classes.cardTitle}>
-                  Frame Work
-                </Typography>
-                <List>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar variant="square">
-                        <Icon sx={{ textAlign: "center" }}>
-                          <img
-                            alt="icon"
-                            src={ReactIcon}
-                            style={{ height: "100%" }}
-                          />
-                        </Icon>
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="ReactJS" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar variant="square">
-                        <Icon sx={{ textAlign: "center" }}>
-                          <img
-                            alt="icon"
-                            src={AngularIcon}
-                            style={{ height: "100%" }}
-                          />
-                        </Icon>
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="Angular" />
-                  </ListItem>
-                </List>
-              </Card>
-            </div>
-          </Grid>
+          {data.skill.map((item, i) => (
+            <Grid key={i} className={classes.gridColumn} item xs={12} md={4}>
+              <div className={classes.cardContainer}>
+                <Card variant="outlined" className={classes.card}>
+                  <Typography className={classes.cardTitle}>
+                    {item.title}
+                  </Typography>
+                  <List>
+                    {item.item.map((obj, k) => (
+                      <ListItem key={k}>
+                        <ListItemAvatar>
+                          <Avatar
+                            // src={MuiIcon}
+                            variant={item.squareBorder ? "square" : "circular"}
+                          >
+                            {/* <CodeIcon /> */}
+                            <Icon sx={{ textAlign: "center" }}>
+                              <img
+                                src={obj.iconURL}
+                                alt="mui icon"
+                                style={{ height: "100%" }}
+                              />
+                            </Icon>
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary={obj.name} />
+                      </ListItem>
+                    ))}
+                   
+                  </List>
+                </Card>
+              </div>
+            </Grid>
+          ))}
         </Grid>
       </div>
     </React.Fragment>

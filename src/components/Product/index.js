@@ -99,13 +99,13 @@ export default function Product({ project, i }) {
             }
           >
             <Box textAlign={i % 2 ? "right" : "left"} sx={{ fontSize: "1rem" }}>
-              <Typography fontSize="1.2em" variant="h5">
+              <Typography fontSize="1.3em" variant="h5">
                 {project.projectName}
               </Typography>
-              <Typography fontSize="0.7em" variant="caption">
+              <Typography fontSize="0.8em" variant="caption">
                 {project.year}
               </Typography>
-              <Typography fontSize="0.9em" style={{ textAlign: "justify" }}>
+              <Typography fontSize="1em" style={{ textAlign: "justify" }}>
                 {project.description}
               </Typography>
               <Box

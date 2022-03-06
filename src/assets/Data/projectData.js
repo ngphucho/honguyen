@@ -35,7 +35,6 @@ export const Projects = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi porro in error molestiae aperiam nam quis sapiente soluta libero minus?",
     path: "https://fe62-booking-nguyenphucho.vercel.app/",
-    ky_thuat: "abc",
     techniques : [
       {title: 'Code', content: 'HTML/CSS, Meterial UI, JavaScript'},
       {title: 'Frame work', content: 'ReactJS'},

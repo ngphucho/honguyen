@@ -1,5 +1,5 @@
 import React from "react";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
 export default function index() {
@@ -18,8 +18,7 @@ export default function index() {
           alignItems: "center",
         }}
       >
-        {/* <LinearProgress sx={{ width: "100%", mx: 10 }} /> */}
-        <CircularProgress size={100} />
+        <CircularProgress size={100} color="secondary" />
       </Box>
     </div>
   );

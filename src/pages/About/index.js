@@ -1,14 +1,12 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
-// import { useNavigate } from "react-router-dom";
 import AboutLeftColumn from "./AboutLeftColumn";
 import AboutRightColumn from "./AboutRightColumn";
-
-import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-
+// import { aboutData } from "../../assets/Data/aboutData";
 import AnimatedPage from "../../components/AnimatedPage";
+import aboutAPI from "../../services/aboutAPI";
+import Loading from "../../components/Loading";
 
 const useStyles = makeStyles((theme) => ({
   leftColumn: {
@@ -21,24 +19,44 @@ const useStyles = makeStyles((theme) => ({
 
 export default function About() {
   const classes = useStyles();
-  // const navigate = useNavigate();
-  return (
-    <AnimatedPage>
-      <div className="about">
-        {/* <Container> */}
+  const [error, setError] = useState(null);
+  const [aboutData, setAboutData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    aboutAPI
+      .getAbout()
+      .then((res) => {
+        setAboutData(res.data[0]);
+        setIsLoaded(true);
+      })
+      .catch((err) => {
+        setError(err);
+        setIsLoaded(true);
+      });
+  }, []);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <Loading />;
+  } else {
+    return (
+      <AnimatedPage>
+        <div className="about">
           <Grid container spacing={3}>
             {/* Left column */}
             <Grid item container md={3} sm={5} className={classes.leftColumn}>
-              <AboutLeftColumn />
+              <AboutLeftColumn data={aboutData} />
             </Grid>
 
             {/* Right column */}
             <Grid item md={9} sm={7} className="profile-box-right">
-              <AboutRightColumn />
+              <AboutRightColumn data={aboutData} />
             </Grid>
           </Grid>
-        {/* </Container> */}
-      </div>
-    </AnimatedPage>
-  );
+        </div>
+      </AnimatedPage>
+    );
+  }
 }
