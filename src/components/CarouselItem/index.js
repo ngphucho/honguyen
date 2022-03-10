@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     height: "35vw",
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     [theme.breakpoints.down("sm")]: {
       height: "50vw",
     },
@@ -54,7 +54,7 @@ export default function CarouselItem({ item, index }) {
   return (
     <Paper>
       <div className={classes.mainDiv}>
-        <img src={item.image} alt={item.name} style={{ width: "100%" }} />
+        <img src={item.image} alt={item.name} style={{ maxWidth: "100%" }} />
       </div>
       <div
         className={
