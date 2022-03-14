@@ -6,11 +6,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { makeStyles } from "@mui/styles";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Navigate, Link } from "react-router-dom";
 import MyDrawer from "../MyDrawer";
 import { Container, Typography } from "@mui/material";
 import { useTheme } from "@mui/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import downloadFile from "../../services/downloadFile";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -78,6 +79,17 @@ export default function Header({ value, handleChange, tabInfo }) {
           />
         ))}
       </Tabs>
+      <Tab
+        disableTouchRipple
+        className={classes.tab}
+        label="DOWNLOAD"
+        onClick={() => {
+          downloadFile(
+            "https://i.postimg.cc/QMMZkcz6/booking-movie-film-detail.png",
+            "myCV.png"
+          );
+        }}
+      />
     </React.Fragment>
   );
 
@@ -105,7 +117,9 @@ export default function Header({ value, handleChange, tabInfo }) {
                     position: "relative",
                   }}
                 >
-                  <div style={{ position: "absolute", left: -12.375 }}>{drawer}</div>
+                  <div style={{ position: "absolute", left: -12.375 }}>
+                    {drawer}
+                  </div>
                   <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
                     {location.pathname.replace("/", "")}
                   </Typography>
