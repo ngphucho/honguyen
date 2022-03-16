@@ -26,6 +26,7 @@ export default createTheme({
 
       // text
       textColor1: "#bdbdbd",
+      textColor2: "#eeeeee",
 
       // space
       // row spacing

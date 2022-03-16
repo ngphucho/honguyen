@@ -124,7 +124,10 @@ export default function Footer({ value: index, handleChange, tabInfo: menu }) {
           container
           sx={{ justifyContent: "center", padding: 2, bgcolor: "#424242" }}
         >
-          <Typography color='lightgrey' fontFamily="monospace">
+          <Typography
+            color="lightgrey"
+            style={{ fontFamily: "Raleway, sans-serif" }}
+          >
             © 2022 Nguyễn Phúc Hồ
           </Typography>
         </Grid>
