@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import AnimatedPage from "../../components/AnimatedPage";
 import { makeStyles } from "@mui/styles";
 import { Grid, Typography, Button, Fab } from "@mui/material";
@@ -8,30 +9,41 @@ const useStyles = makeStyles((theme) => ({
     height: "calc(100vh - 64px - 1.5rem)",
     display: "flex",
     alignContent: "stretch",
+    marginBottom: "-1.5rem",
   },
   left: {
     "&.MuiGrid-root": {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
+      fontSize: "1.4rem",
+      [theme.breakpoints.down("md")]: {
+        fontSize: "1.1rem",
+      },
     },
   },
   greeting: {
     "&.MuiTypography-root": {
       marginBottom: "1rem",
       color: theme.palette.common.textColor2,
+      fontSize: "1em",
     },
   },
   introduce: {
     "&.MuiTypography-root": {
       marginBottom: "1rem",
       color: theme.palette.common.textColor2,
+      fontSize: "2.5em",
+      [theme.breakpoints.down("md")]: {
+        fontSize: "2em",
+      },
     },
   },
   description: {
     "&.MuiTypography-root": {
       marginBottom: "1rem",
       color: theme.palette.common.textColor2,
+      fontSize: "0.7em",
     },
   },
   button: {
@@ -52,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 260,
     width: "60%",
     height: "75%",
-    backgroundColor: "red",
+    backgroundColor: theme.palette.common.bg2,
     position: "relative",
     overflow: "visible",
     zIndex: 1,
@@ -61,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
       width: "70%",
       height: "70%",
-      backgroundColor: "white",
+      backgroundColor: 'inherit',
       position: "absolute",
       left: -10,
       top: -10,
@@ -72,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
       width: "70%",
       height: "70%",
-      backgroundColor: "white",
+      backgroundColor: 'inherit',
       position: "absolute",
       right: -10,
       bottom: -10,
@@ -83,14 +95,16 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: "100%",
-    // backgroundColor: "green",
+    backgroundColor: 'inherit',
     backgroundImage: "url(/images/avatar.jpg)",
-    backgroundSize: 'cover',
+    filter: "grayscale(80%)",
+    backgroundSize: "cover",
     zIndex: 1,
   },
 }));
 
 export default function Home() {
+  const navigate = useNavigate();
   const classes = useStyles();
   return (
     <AnimatedPage>
@@ -106,7 +120,6 @@ export default function Home() {
             <Typography
               sx={{ textAlign: { xs: "center", sm: "left" } }}
               className={classes.greeting}
-              variant="h6"
             >
               Hello, my name is{" "}
               <span
@@ -121,7 +134,6 @@ export default function Home() {
             <Typography
               sx={{ textAlign: { xs: "center", sm: "left" } }}
               className={classes.introduce}
-              variant="h3"
             >
               I'm a Developer
             </Typography>
@@ -136,13 +148,23 @@ export default function Home() {
             </Typography>
             <div className={classes.button}>
               <Fab
-                sx={{ mr: 1, minWidth: 120 }}
+                sx={{ mr: 3, minWidth: 120 }}
                 color="info"
                 variant="extended"
+                onClick={() => {
+                  navigate("/about");
+                }}
               >
                 CV
               </Fab>
-              <Fab sx={{ minWidth: 120 }} color="secondary" variant="extended">
+              <Fab
+                sx={{ minWidth: 120 }}
+                color="secondary"
+                variant="extended"
+                onClick={() => {
+                  navigate("/project");
+                }}
+              >
                 Project
               </Fab>
             </div>
