@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import AnimatedPage from "../../components/AnimatedPage";
 import { makeStyles } from "@mui/styles";
-import { Grid, Typography, Button, Fab } from "@mui/material";
+import { Grid, Typography, Fab } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
       width: "70%",
       height: "70%",
-      backgroundColor: 'inherit',
+      backgroundColor: "inherit",
       position: "absolute",
       left: -10,
       top: -10,
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
       width: "70%",
       height: "70%",
-      backgroundColor: 'inherit',
+      backgroundColor: "inherit",
       position: "absolute",
       right: -10,
       bottom: -10,
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "100%",
     height: "100%",
-    backgroundColor: 'inherit',
+    backgroundColor: "inherit",
     backgroundImage: "url(/images/avatar.jpg)",
     filter: "grayscale(80%)",
     backgroundSize: "cover",

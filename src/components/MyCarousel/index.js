@@ -5,9 +5,10 @@ import CarouselItem from "../CarouselItem";
 export default function MyCarousel({ items, index }) {
   return (
     <Carousel
-      autoPlay={false}
+      autoPlay={true}
       indicators={false}
-      animation="slide"
+      animation="fade"
+      duration={1500}
     >
       {items.map((item, i) => (
         <CarouselItem key={i} item={item} index={index} />
