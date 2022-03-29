@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AnimatedPage from "../../components/AnimatedPage";
 import { makeStyles } from "@mui/styles";
 import { Grid, Typography, Fab } from "@mui/material";
+import WaveEffect from "../../components/WaveEffect";
 
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -182,6 +183,7 @@ export default function Home() {
           </Grid>
         </Grid>
       </div>
+      {/* <WaveEffect /> */}
     </AnimatedPage>
   );
 }
