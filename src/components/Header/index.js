@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import AppBar from "@mui/material/AppBar";
@@ -13,6 +13,7 @@ import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import { useTheme } from "@mui/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import downloadFile from "../../services/downloadFile";
+import { Link, scroller } from "react-scroll";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -40,7 +41,9 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: 700,
       fontSize: "1.1rem",
       "&.Mui-selected": {
-        color: "#fff",
+        // color: "#fff",
+        color: theme.palette.secondary.transparent50,
+        fontWeight: 700,
       },
     },
   },
@@ -49,12 +52,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header({ value, handleChange, tabInfo }) {
-  const location = useLocation();
-  const navigate = useNavigate();
+export default function Header({
+  value,
+  setValue,
+  handleChange,
+  tabInfo,
+  isSpy,
+  setIsSpy,
+}) {
   const classes = useStyles();
   const theme = useTheme();
   const matchMD = useMediaQuery(theme.breakpoints.up("md"));
+  const [name, setName] = useState("");
 
   const tabs = (
     <React.Fragment>
@@ -62,7 +71,6 @@ export default function Header({ value, handleChange, tabInfo }) {
         // className={classes.tabContainer}
         value={value}
         onChange={handleChange}
-        // textColor="secondary"
         TabIndicatorProps={{
           style: { height: "100%", opacity: 0.1, backgroundColor: "#bdbdbd" },
         }}
@@ -73,10 +81,42 @@ export default function Header({ value, handleChange, tabInfo }) {
             key={tab.index}
             value={tab.index}
             className={classes.tab}
-            label={tab.label}
             onClick={() => {
-              navigate(tab.to);
+              setValue(tab.index);
+              setIsSpy(false);
+              setTimeout(() => {
+                setIsSpy(true);
+              }, 1000);
+              scroller.scrollTo(tab.label, {
+                smooth: true,
+                duration: 600,
+                offset: -64,
+              });
             }}
+            label={
+              <div>
+                <Link
+                  style={{ display: "none" }}
+                  to={tab.label}
+                  smooth={true}
+                  spy={isSpy}
+                  duration={600}
+                  offset={-64}
+                  onSetActive={() => {
+                    setValue(tab.index);
+                    setName(tab.label);
+                  }}
+                  // onClick={() => {
+                  //   setValue(tab.index);
+                  //   setIsSpy(false);
+                  //   setTimeout(() => {
+                  //     setIsSpy(true);
+                  //   }, 1000);
+                  // }}
+                ></Link>
+                {tab.label}
+              </div>
+            }
           />
         ))}
       </Tabs>
@@ -96,7 +136,15 @@ export default function Header({ value, handleChange, tabInfo }) {
 
   const drawer = (
     <React.Fragment>
-      <MyDrawer dataList={tabInfo} index={value} />
+      <MyDrawer
+        dataList={tabInfo}
+        index={value}
+        isSpy={isSpy}
+        setIsSpy={setIsSpy}
+        name={name}
+        setName={setName}
+        setValue={setValue}
+      />
     </React.Fragment>
   );
 
@@ -105,9 +153,13 @@ export default function Header({ value, handleChange, tabInfo }) {
       <ElevationScroll>
         <AppBar>
           <Toolbar disableGutters>
-            {matchMD ? (
-              <div className={classes.tabContainer}>{tabs}</div>
-            ) : (
+            <div
+              style={{ display: matchMD ? "flex" : "none" }}
+              className={classes.tabContainer}
+            >
+              {tabs}
+            </div>
+            {matchMD ? null : (
               <Container>
                 <div
                   style={{
@@ -116,13 +168,12 @@ export default function Header({ value, handleChange, tabInfo }) {
                     alignItems: "center",
                     width: "100%",
                     position: "relative",
-                    // marginLeft: -12.375,
                     marginRight: -12.375,
                   }}
                 >
                   <div style={{ marginLeft: -12.375 }}>{drawer}</div>
                   <Typography variant="h6" sx={{ textTransform: "uppercase" }}>
-                    {location.pathname.replace("/", "")}
+                    {name}
                   </Typography>
                   <div style={{ marginRight: -12.375 }}>
                     <IconButton

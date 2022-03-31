@@ -7,8 +7,14 @@ import Grid from "@mui/material/Grid";
 import AnimatedPage from "../../components/AnimatedPage";
 import aboutAPI from "../../services/aboutAPI";
 import Loading from "../../components/Loading";
+import { Container } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
+  about: {
+    minHeight: "calc(100vh - 64px)",
+    paddingTop: "1.5rem",
+    paddingBottom: "1.5rem",
+  },
   leftColumn: {
     "&.MuiGrid-root": {
       backgroundColor: theme.palette.common.bg1,
@@ -43,19 +49,21 @@ export default function About() {
   } else {
     return (
       <AnimatedPage>
-        <div className="about">
-          <Grid container spacing={3}>
-            {/* Left column */}
-            <Grid item container md={3} sm={5} className={classes.leftColumn}>
-              <AboutLeftColumn data={aboutData} />
-            </Grid>
+        <Container id="about">
+          <div className={classes.about}>
+            <Grid container spacing={3}>
+              {/* Left column */}
+              <Grid item container md={3} sm={5} className={classes.leftColumn}>
+                <AboutLeftColumn data={aboutData} />
+              </Grid>
 
-            {/* Right column */}
-            <Grid item md={9} sm={7} className="profile-box-right">
-              <AboutRightColumn data={aboutData} />
+              {/* Right column */}
+              <Grid item md={9} sm={7} className="profile-box-right">
+                <AboutRightColumn data={aboutData} />
+              </Grid>
             </Grid>
-          </Grid>
-        </div>
+          </div>
+        </Container>
       </AnimatedPage>
     );
   }

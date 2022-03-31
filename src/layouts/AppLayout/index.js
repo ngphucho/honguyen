@@ -4,11 +4,13 @@ import { useLocation } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 // import { menu as tabInfo } from "../../assets/Data/menu";
-import { Outlet } from "react-router-dom";
-import { Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import menuAPI from "../../services/menuAPI";
 import Loading from "../../components/Loading";
+import Home from "../../pages/Home";
+import About from "../../pages/About";
+import Project from "../../pages/Project";
+import Contact from "../../pages/Contact";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -24,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  outlet: {
-    minHeight: "calc(100vh - 64px - 100px - 2rem)",
-    padding: "1.5rem 0",
+  mainBody: {
+    minHeight: "calc(100vh - 64px)",
+    // padding: "1.5rem 0",
     backgroundColor: "#212121",
   },
 }));
@@ -38,6 +40,7 @@ export default function AppLayout() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [tabInfo, setTabInfo] = useState([]);
   const [value, setValue] = useState(0);
+  const [isSpy, setIsSpy] = useState(true);
 
   const handleChange = (e, value) => {
     setValue(value);
@@ -79,13 +82,27 @@ export default function AppLayout() {
   } else {
     return (
       <div className={classes.mainDiv}>
-        <Header value={value} handleChange={handleChange} tabInfo={tabInfo} />
-        <div className={classes.outlet}>
-          <Container>
-            <Outlet />
-          </Container>
+        <Header
+          value={value}
+          handleChange={handleChange}
+          tabInfo={tabInfo}
+          setValue={setValue}
+          isSpy={isSpy}
+          setIsSpy={setIsSpy}
+        />
+        <div className={classes.mainBody}>
+          <Home />
+          <About />
+          <Project />
+          <Contact />
         </div>
-        <Footer value={value} handleChange={handleChange} tabInfo={tabInfo} />
+        <Footer
+          value={value}
+          setValue={setValue}
+          tabInfo={tabInfo}
+          isSpy={isSpy}
+          setIsSpy={setIsSpy}
+        />
       </div>
     );
   }

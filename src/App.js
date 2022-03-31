@@ -31,50 +31,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         {/* <AnimatePresence exitBeforeEnter> */}
-        <ScrollToTop>
-          <Routes>
-            {/* Router Admin */}
-
-            {/* Router App */}
-            <Route path="/" element={<AppLayout />}>
-              <Route index element={<Navigate to="/home" />} />
-              <Route
-                path="home"
-                element={
-                  <Suspense fallback={null}>
-                    <Home />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="about"
-                element={
-                  <Suspense fallback={null}>
-                    <About />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="project"
-                element={
-                  <Suspense fallback={null}>
-                    <Project />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="contact"
-                element={
-                  <Suspense fallback={null}>
-                    <Contact />
-                  </Suspense>
-                }
-              />
-              <Route path="*" element={<Navigate to="home" />} />
-            </Route>
-          </Routes>
-        </ScrollToTop>
-        {/* </AnimatePresence> */}
+        <AppLayout />
+        
       </BrowserRouter>
     </ThemeProvider>
     // </Suspense>

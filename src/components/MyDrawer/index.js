@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { makeStyles } from "@mui/styles";
+import { Link } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
   listItemButton: {
@@ -25,7 +26,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyDrawer({ dataList, index }) {
+export default function MyDrawer({
+  dataList,
+  index,
+  isSpy,
+  setIsSpy,
+  setValue,
+  setName,
+}) {
   const classes = useStyles();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -55,14 +63,31 @@ export default function MyDrawer({ dataList, index }) {
                   disabled={item.index === index}
                   className={classes.listItemButton}
                   key={item.index}
-                  onClick={() => {
-                    navigate(item.to);
-                  }}
                 >
                   <ListItemText
                     sx={{ textTransform: "uppercase", textAlign: "center" }}
                   >
-                    {item.label}
+                    <Link
+                      to={item.label}
+                      smooth={true}
+                      spy={true}
+                      duration={600}
+                      offset={-64}
+                      onSetActive={() => {
+                        setName(item.label);
+                        setValue(item.index);
+                      }}
+                      onClick={() => {
+                        setValue(item.index);
+                        setName(item.label);
+                        setIsSpy(false);
+                        setTimeout(() => {
+                          setIsSpy(true);
+                        }, 1000);
+                      }}
+                    >
+                      {item.label}
+                    </Link>
                   </ListItemText>
                 </ListItemButton>
               ))

@@ -2,15 +2,15 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import AnimatedPage from "../../components/AnimatedPage";
 import { makeStyles } from "@mui/styles";
-import { Grid, Typography, Fab } from "@mui/material";
+import { Grid, Typography, Fab, Container } from "@mui/material";
 import WaveEffect from "../../components/WaveEffect";
 
 const useStyles = makeStyles((theme) => ({
   home: {
-    height: "calc(100vh - 64px - 1.5rem)",
+    minHeight: "calc(100vh - 64px)",
     display: "flex",
     alignContent: "stretch",
-    marginBottom: "-1.5rem",
+    // marginBottom: "-1.5rem",
   },
   left: {
     "&.MuiGrid-root": {
@@ -109,81 +109,82 @@ export default function Home() {
   const classes = useStyles();
   return (
     <AnimatedPage>
-      <div className={classes.home}>
-        <Grid
-          container
-          sx={{
-            background:
-              "radial-gradient(circle, #424242 , #303030, #212121 90%)",
-          }}
-        >
-          <Grid item container sm={6} xs={12} className={classes.left}>
-            <Typography
-              sx={{ textAlign: { xs: "center", sm: "left" } }}
-              className={classes.greeting}
-            >
-              Hello, my name is{" "}
-              <span
-                style={{
-                  fontWeight: 800,
-                  fontFamily: "Raleway, sans-serif",
-                }}
-              >
-                Nguyen Phuc Ho
-              </span>
-            </Typography>
-            <Typography
-              sx={{ textAlign: { xs: "center", sm: "left" } }}
-              className={classes.introduce}
-            >
-              I'm a Developer
-            </Typography>
-            <Typography
-              sx={{ textAlign: { xs: "center", sm: "justify" } }}
-              className={classes.description}
-            >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
-              veniam beatae, eaque ullam dolor asperiores nihil, ducimus id qui,
-              aliquid sunt minima perferendis in optio laboriosam doloremque
-              voluptatibus dolores rerum?
-            </Typography>
-            <div className={classes.button}>
-              <Fab
-                sx={{ mr: 3, minWidth: 120 }}
-                color="info"
-                variant="extended"
-                onClick={() => {
-                  navigate("/about");
-                }}
-              >
-                CV
-              </Fab>
-              <Fab
-                sx={{ minWidth: 120 }}
-                color="secondary"
-                variant="extended"
-                onClick={() => {
-                  navigate("/project");
-                }}
-              >
-                Project
-              </Fab>
-            </div>
-          </Grid>
+      <Container id="home">
+        <div className={classes.home}>
           <Grid
-            item
             container
-            sm={6}
-            sx={{ display: { xs: "none", sm: "flex" } }}
-            className={classes.right}
+            sx={{
+              background:
+                "radial-gradient(circle, #424242 , #303030, #212121 90%)",
+            }}
           >
-            <div className={classes.pictureBox}>
-              <div className={classes.pictrue} />
-            </div>
+            <Grid item container sm={6} xs={12} className={classes.left}>
+              <Typography
+                sx={{ textAlign: { xs: "center", sm: "left" } }}
+                className={classes.greeting}
+              >
+                Hello, my name is{" "}
+                <span
+                  style={{
+                    fontWeight: 800,
+                    fontFamily: "Raleway, sans-serif",
+                  }}
+                >
+                  Nguyen Phuc Ho
+                </span>
+              </Typography>
+              <Typography
+                sx={{ textAlign: { xs: "center", sm: "left" } }}
+                className={classes.introduce}
+              >
+                I'm a Developer
+              </Typography>
+              <Typography
+                sx={{ textAlign: { xs: "center", sm: "justify" } }}
+                className={classes.description}
+              >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
+                veniam beatae, eaque ullam dolor asperiores nihil, ducimus id
+                qui, aliquid sunt minima perferendis in optio laboriosam
+                doloremque voluptatibus dolores rerum?
+              </Typography>
+              <div className={classes.button}>
+                <Fab
+                  sx={{ mr: 3, minWidth: 120 }}
+                  color="info"
+                  variant="extended"
+                  onClick={() => {
+                    navigate("/about");
+                  }}
+                >
+                  CV
+                </Fab>
+                <Fab
+                  sx={{ minWidth: 120 }}
+                  color="secondary"
+                  variant="extended"
+                  onClick={() => {
+                    navigate("/project");
+                  }}
+                >
+                  Project
+                </Fab>
+              </div>
+            </Grid>
+            <Grid
+              item
+              container
+              sm={6}
+              sx={{ display: { xs: "none", sm: "flex" } }}
+              className={classes.right}
+            >
+              <div className={classes.pictureBox}>
+                <div className={classes.pictrue} />
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
-      </div>
-      {/* <WaveEffect /> */}
+        </div>
+      </Container>
     </AnimatedPage>
   );
 }

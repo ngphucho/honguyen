@@ -86,17 +86,17 @@ export default function ContactForm() {
   };
 
   const onSubmit = (data) => {
-    // emailjs.send(serviceID, templateID, data).then(
-    //   (result) => {
-    //     callSnackBar("Done! Thank you!", "success");
-    //     reset();
-    //     // console.log(result.text);
-    //   },
-    //   (error) => {
-    //     callSnackBar("something went wrong, please try again!", "error");
-    //     // console.log(error.text);
-    //   }
-    // );
+    emailjs.send(serviceID, templateID, data).then(
+      (result) => {
+        callSnackBar("Done! Thank you!", "success");
+        reset();
+        // console.log(result.text);
+      },
+      (error) => {
+        callSnackBar("something went wrong, please try again!", "error");
+        // console.log(error.text);
+      }
+    );
   };
 
   return (

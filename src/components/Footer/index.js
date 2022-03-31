@@ -17,6 +17,7 @@ import ZaloIcon from "../../assets/icons/icons8-zalo.svg";
 import GithubIcon from "../../assets/icons/icons8-github.svg";
 import Lottie from "react-lottie";
 import animationData from "../../assets/lotties/software-development.json";
+import { Link as Scroll } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Footer({ value: index, handleChange, tabInfo: menu }) {
+export default function Footer({ value: index, setValue, tabInfo: menu, isSpy, setIsSpy }) {
   const navigate = useNavigate();
   const classes = useStyles();
   const defaultOtions = {
@@ -71,16 +72,31 @@ export default function Footer({ value: index, handleChange, tabInfo: menu }) {
             {menu.map((item) => (
               <ListItemButton
                 key={item.index}
-                onClick={() => {
-                  navigate(item.to);
-                }}
                 selected={item.index === index}
                 disabled={item.index === index}
               >
                 <ListItemText
                   sx={{ textTransform: "capitalize", color: "#fff" }}
                 >
-                  {item.label}
+                  <Scroll
+                    to={item.label}
+                    smooth={true}
+                    spy={isSpy}
+                    duration={600}
+                    offset={-64}
+                    onSetActive={() => {
+                      setValue(item.index);
+                    }}
+                    onClick={() => {
+                      setValue(item.index);
+                      setIsSpy(false);
+                      setTimeout(() => {
+                        setIsSpy(true);
+                      }, 1000);
+                    }}
+                  >
+                    {item.label}
+                  </Scroll>
                 </ListItemText>
               </ListItemButton>
             ))}
