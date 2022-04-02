@@ -1,6 +1,6 @@
 let pos, moving, frame;
 let smooth = 12,
-  speed = 120,
+  speed = 60,
   target =
     document.scrollingElement ||
     document.documentElement ||

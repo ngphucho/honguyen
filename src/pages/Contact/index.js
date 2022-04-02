@@ -23,9 +23,9 @@ import Loading from "../../components/Loading";
 
 const useStyles = makeStyles((theme) => ({
   contact: {
-    minHeight: "calc(100vh - 64px)",
-    paddingTop: "1.5rem",
-    paddingBottom: "1.5rem",
+    minHeight: theme.palette.common.pageMinHight,
+    paddingTop: theme.palette.common.pagePaddingTop,
+    paddingBottom: theme.palette.common.pagePaddingBottom,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -125,74 +125,78 @@ export default function Contact() {
     return <div />;
   } else {
     return (
-      <AnimatedPage>
-        <Container id="contact">
-          <div className={classes.contact}>
-            {/* <Container> */}
-            <Grid
-              px={matchLG ? "200px" : matchMD ? "100px" : matchSM ? "50px" : 0}
-              container
-              className={classes.mainGrid}
-            >
-              {/* Left Column */}
-              <Grid item sm={5} xs={12}>
-                <div className={classes.leftColumn}>
-                  <Typography
-                    textAlign={!matchSM ? "center" : "left"}
-                    variant="h5"
-                    color="#bdbdbd"
-                  >
-                    Contact Me
-                  </Typography>
-                  <List>
-                    <ListItem disableGutters={!matchMD}>
-                      <ListItemIcon className={classes.listItemIcon}>
-                        <LocationOnIcon className={classes.itemText} />
-                      </ListItemIcon>
-                      <ListItemText className={classes.itemText}>
-                        {contactData.address}
-                      </ListItemText>
-                    </ListItem>
+      <div className="page">
+        <AnimatedPage>
+          <Container id="contact">
+            <div className={classes.contact}>
+              {/* <Container> */}
+              <Grid
+                px={
+                  matchLG ? "200px" : matchMD ? "100px" : matchSM ? "50px" : 0
+                }
+                container
+                className={classes.mainGrid}
+              >
+                {/* Left Column */}
+                <Grid item sm={5} xs={12}>
+                  <div className={classes.leftColumn}>
+                    <Typography
+                      textAlign={!matchSM ? "center" : "left"}
+                      variant="h5"
+                      color="#bdbdbd"
+                    >
+                      Contact Me
+                    </Typography>
+                    <List>
+                      <ListItem disableGutters={!matchMD}>
+                        <ListItemIcon className={classes.listItemIcon}>
+                          <LocationOnIcon className={classes.itemText} />
+                        </ListItemIcon>
+                        <ListItemText className={classes.itemText}>
+                          {contactData.address}
+                        </ListItemText>
+                      </ListItem>
 
-                    <ListItem disableGutters={!matchMD}>
-                      <ListItemIcon className={classes.listItemIcon}>
-                        <EmailIcon className={classes.itemText} />
-                      </ListItemIcon>
-                      <ListItemText className={classes.itemText}>
-                        <Link
-                          className={classes.itemText}
-                          href={`mailto:${contactData.email}`}
-                        >
-                          {contactData.email}
-                        </Link>
-                      </ListItemText>
-                    </ListItem>
+                      <ListItem disableGutters={!matchMD}>
+                        <ListItemIcon className={classes.listItemIcon}>
+                          <EmailIcon className={classes.itemText} />
+                        </ListItemIcon>
+                        <ListItemText className={classes.itemText}>
+                          <Link
+                            className={classes.itemText}
+                            href={`mailto:${contactData.email}`}
+                          >
+                            {contactData.email}
+                          </Link>
+                        </ListItemText>
+                      </ListItem>
 
-                    <ListItem disableGutters={!matchMD}>
-                      <ListItemIcon className={classes.listItemIcon}>
-                        <PhoneIphoneIcon className={classes.itemText} />
-                      </ListItemIcon>
-                      <ListItemText className={classes.itemText}>
-                        <Link
-                          className={classes.itemText}
-                          href={`tel:${contactData.phoneNumber}`}
-                        >
-                          {contactData.phoneNumber}
-                        </Link>
-                      </ListItemText>
-                    </ListItem>
-                  </List>
-                </div>
+                      <ListItem disableGutters={!matchMD}>
+                        <ListItemIcon className={classes.listItemIcon}>
+                          <PhoneIphoneIcon className={classes.itemText} />
+                        </ListItemIcon>
+                        <ListItemText className={classes.itemText}>
+                          <Link
+                            className={classes.itemText}
+                            href={`tel:${contactData.phoneNumber}`}
+                          >
+                            {contactData.phoneNumber}
+                          </Link>
+                        </ListItemText>
+                      </ListItem>
+                    </List>
+                  </div>
+                </Grid>
+                {/* Right column */}
+                <Grid item sm={7} xs={12} className={classes.rightColumn}>
+                  <ContactForm />
+                </Grid>
               </Grid>
-              {/* Right column */}
-              <Grid item sm={7} xs={12} className={classes.rightColumn}>
-                <ContactForm />
-              </Grid>
-            </Grid>
-            {/* </Container> */}
-          </div>
-        </Container>
-      </AnimatedPage>
+              {/* </Container> */}
+            </div>
+          </Container>
+        </AnimatedPage>
+      </div>
     );
   }
 }

@@ -16,6 +16,7 @@ import { Link } from "react-scroll";
 const useStyles = makeStyles((theme) => ({
   listItemButton: {
     "&.MuiListItemButton-root": {
+      padding: 0,
       "&:hover": {
         backgroundColor: "#424242",
       },
@@ -64,31 +65,38 @@ export default function MyDrawer({
                   className={classes.listItemButton}
                   key={item.index}
                 >
-                  <ListItemText
+                  {/* <ListItemText
                     sx={{ textTransform: "uppercase", textAlign: "center" }}
+                  > */}
+                  <Link
+                    style={{
+                      display: "block",
+                      padding: 15,
+                      width: "100%",
+                      textTransform: "uppercase",
+                      textAlign: "center",
+                    }}
+                    to={item.label}
+                    smooth={true}
+                    spy={isSpy}
+                    duration={600}
+                    offset={-64}
+                    onSetActive={() => {
+                      setName(item.label);
+                      setValue(item.index);
+                    }}
+                    onClick={() => {
+                      setValue(item.index);
+                      setName(item.label);
+                      setIsSpy(false);
+                      setTimeout(() => {
+                        setIsSpy(true);
+                      }, 1000);
+                    }}
                   >
-                    <Link
-                      to={item.label}
-                      smooth={true}
-                      spy={true}
-                      duration={600}
-                      offset={-64}
-                      onSetActive={() => {
-                        setName(item.label);
-                        setValue(item.index);
-                      }}
-                      onClick={() => {
-                        setValue(item.index);
-                        setName(item.label);
-                        setIsSpy(false);
-                        setTimeout(() => {
-                          setIsSpy(true);
-                        }, 1000);
-                      }}
-                    >
-                      {item.label}
-                    </Link>
-                  </ListItemText>
+                    {item.label}
+                  </Link>
+                  {/* </ListItemText> */}
                 </ListItemButton>
               ))
             : null}

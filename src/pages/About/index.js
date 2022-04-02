@@ -11,9 +11,9 @@ import { Container } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   about: {
-    minHeight: "calc(100vh - 64px)",
-    paddingTop: "1.5rem",
-    paddingBottom: "1.5rem",
+    minHeight: theme.palette.common.pageMinHight,
+    paddingTop: theme.palette.common.pagePaddingTop,
+    paddingBottom: theme.palette.common.pagePaddingBottom,
   },
   leftColumn: {
     "&.MuiGrid-root": {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function About() {
+export default function About({ setValue, setIsSpy }) {
   const classes = useStyles();
   const [error, setError] = useState(null);
   const [aboutData, setAboutData] = useState([]);
@@ -48,23 +48,35 @@ export default function About() {
     return <div />;
   } else {
     return (
-      <AnimatedPage>
-        <Container id="about">
-          <div className={classes.about}>
-            <Grid container spacing={3}>
-              {/* Left column */}
-              <Grid item container md={3} sm={5} className={classes.leftColumn}>
-                <AboutLeftColumn data={aboutData} />
-              </Grid>
+      <div className="page">
+        <AnimatedPage>
+          <Container id="about">
+            <div className={classes.about}>
+              <Grid container spacing={3}>
+                {/* Left column */}
+                <Grid
+                  item
+                  container
+                  md={3}
+                  sm={5}
+                  className={classes.leftColumn}
+                >
+                  <AboutLeftColumn
+                    data={aboutData}
+                    setValue={setValue}
+                    setIsSpy={setIsSpy}
+                  />
+                </Grid>
 
-              {/* Right column */}
-              <Grid item md={9} sm={7} className="profile-box-right">
-                <AboutRightColumn data={aboutData} />
+                {/* Right column */}
+                <Grid item md={9} sm={7} className="profile-box-right">
+                  <AboutRightColumn data={aboutData} />
+                </Grid>
               </Grid>
-            </Grid>
-          </div>
-        </Container>
-      </AnimatedPage>
+            </div>
+          </Container>
+        </AnimatedPage>
+      </div>
     );
   }
 }

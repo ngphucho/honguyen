@@ -9,9 +9,9 @@ import Loading from "../../components/Loading";
 
 const useStyles = makeStyles((theme) => ({
   project: {
-    minHeight: "calc(100vh - 64px)",    
-    paddingTop: "1.5rem",
-    paddingBottom: "1.5rem",
+    minHeight: theme.palette.common.pageMinHight,
+    paddingTop: theme.palette.common.pagePaddingTop,
+    paddingBottom: theme.palette.common.pagePaddingBottom,
   },
 }));
 
@@ -40,6 +40,7 @@ export default function Project() {
     return <div />;
   } else {
     return (
+      <div className="page">
       <AnimatedPage>
         <Container id="project">
           <div className={classes.project}>
@@ -50,7 +51,7 @@ export default function Project() {
             </Grid>
           </div>
         </Container>
-      </AnimatedPage>
+      </AnimatedPage></div>
     );
   }
 }

@@ -23,7 +23,7 @@ import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useTheme } from "@mui/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import { scroller } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -143,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AboutLeftColumn({ data }) {
+export default function AboutLeftColumn({ data, setValue, setIsSpy }) {
   const theme = useTheme();
   const classes = useStyles();
   const navigate = useNavigate();
@@ -243,7 +243,16 @@ export default function AboutLeftColumn({ data }) {
             color="primary"
             sx={{ mx: "auto", minWidth: 120 }}
             onClick={() => {
-              navigate("/contact");
+              setValue(4); //contact page have index = 4
+              setIsSpy(false);
+              setTimeout(() => {
+                setIsSpy(true);
+              }, 1000);
+              scroller.scrollTo("contact", {
+                smooth: true,
+                duration: 600,
+                offset: -64,
+              });
             }}
           >
             Contact

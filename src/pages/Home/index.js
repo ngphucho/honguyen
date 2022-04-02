@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AnimatedPage from "../../components/AnimatedPage";
 import { makeStyles } from "@mui/styles";
 import { Grid, Typography, Fab, Container } from "@mui/material";
-import WaveEffect from "../../components/WaveEffect";
+import { scroller } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home() {
+export default function Home({ setValue, setIsSpy }) {
   const navigate = useNavigate();
   const classes = useStyles();
   return (
@@ -154,7 +154,16 @@ export default function Home() {
                   color="info"
                   variant="extended"
                   onClick={() => {
-                    navigate("/about");
+                    setValue(1); //about page have index = 1
+                    setIsSpy(false);
+                    setTimeout(() => {
+                      setIsSpy(true);
+                    }, 1000);
+                    scroller.scrollTo("about", {
+                      smooth: true,
+                      duration: 600,
+                      offset: -64,
+                    });
                   }}
                 >
                   CV
@@ -164,7 +173,16 @@ export default function Home() {
                   color="secondary"
                   variant="extended"
                   onClick={() => {
-                    navigate("/project");
+                    setValue(3); //project page have index = 3
+                    setIsSpy(false);
+                    setTimeout(() => {
+                      setIsSpy(true);
+                    }, 1000);
+                    scroller.scrollTo("project", {
+                      smooth: true,
+                      duration: 600,
+                      offset: -64,
+                    });
                   }}
                 >
                   Project

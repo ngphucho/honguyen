@@ -91,8 +91,8 @@ export default function AppLayout() {
           setIsSpy={setIsSpy}
         />
         <div className={classes.mainBody}>
-          <Home />
-          <About />
+          <Home setValue={setValue} setIsSpy={setIsSpy}/>
+          <About setValue={setValue} setIsSpy={setIsSpy} />
           <Project />
           <Contact />
         </div>

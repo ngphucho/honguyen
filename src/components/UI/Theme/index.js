@@ -29,6 +29,12 @@ export default createTheme({
       textColor2: "#eeeeee",
 
       // space
+      pagePaddingTop: "3rem",
+      pagePaddingBottom: "3rem",
+
+      //page hight
+      pageMinHight: "calc(100vh - 64px)",
+
       // row spacing
       row: {
         "&:not(:last-child)": {
