@@ -1,9 +1,11 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import AnimatedPage from "../../components/AnimatedPage";
 import { makeStyles } from "@mui/styles";
 import { Grid, Typography, Fab, Container } from "@mui/material";
 import { scroller } from "react-scroll";
+import $ from "jquery";
+import "jquery.ripples";
+import TypeWriter from "typewriter-effect";
 
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   description: {
     "&.MuiTypography-root": {
-      marginBottom: "1rem",
+      marginBottom: "1.5rem",
       color: theme.palette.common.textColor2,
       fontSize: "0.7em",
     },
@@ -79,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
       left: -10,
       top: -10,
       zIndex: 0,
+      transition: "all .6s",
     },
     "&::after": {
       content: '""',
@@ -90,6 +93,10 @@ const useStyles = makeStyles((theme) => ({
       right: -10,
       bottom: -10,
       zIndex: 0,
+      transition: "all .6s",
+    },
+    "&:hover::after, &:hover::before": {
+      boxShadow: "rgba(255, 255, 255, 0.5) 0px 0px 16px",
     },
   },
   pictrue: {
@@ -101,108 +108,139 @@ const useStyles = makeStyles((theme) => ({
     filter: "grayscale(80%)",
     backgroundSize: "cover",
     zIndex: 1,
-  },
+    transition: "all 3s",
+    "&:hover": {
+      filter: "grayscale(50%)",
+    },
+  }
 }));
 
 export default function Home({ setValue, setIsSpy }) {
-  const navigate = useNavigate();
   const classes = useStyles();
+  // waveEffect
+  useEffect(() => {
+    $(".waveEffect").ripples({
+      dropRadius: 20,
+      perturbance: 0.03,
+      resolution: 512,
+    });
+    // return $(".homme").ripples("destroy");
+  }, []);
   return (
     <AnimatedPage>
-      <Container id="home">
-        <div className={classes.home}>
-          <Grid
-            container
-            sx={{
-              background:
-                "radial-gradient(circle, #424242 , #303030, #212121 90%)",
-            }}
-          >
-            <Grid item container sm={6} xs={12} className={classes.left}>
-              <Typography
-                sx={{ textAlign: { xs: "center", sm: "left" } }}
-                className={classes.greeting}
-              >
-                Hello, my name is{" "}
-                <span
-                  style={{
-                    fontWeight: 800,
-                    fontFamily: "Raleway, sans-serif",
-                  }}
-                >
-                  Nguyen Phuc Ho
-                </span>
-              </Typography>
-              <Typography
-                sx={{ textAlign: { xs: "center", sm: "left" } }}
-                className={classes.introduce}
-              >
-                I'm a Developer
-              </Typography>
-              <Typography
-                sx={{ textAlign: { xs: "center", sm: "justify" } }}
-                className={classes.description}
-              >
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
-                veniam beatae, eaque ullam dolor asperiores nihil, ducimus id
-                qui, aliquid sunt minima perferendis in optio laboriosam
-                doloremque voluptatibus dolores rerum?
-              </Typography>
-              <div className={classes.button}>
-                <Fab
-                  sx={{ mr: 3, minWidth: 120 }}
-                  color="info"
-                  variant="extended"
-                  onClick={() => {
-                    setValue(1); //about page have index = 1
-                    setIsSpy(false);
-                    setTimeout(() => {
-                      setIsSpy(true);
-                    }, 1000);
-                    scroller.scrollTo("about", {
-                      smooth: true,
-                      duration: 600,
-                      offset: -64,
-                    });
-                  }}
-                >
-                  CV
-                </Fab>
-                <Fab
-                  sx={{ minWidth: 120 }}
-                  color="secondary"
-                  variant="extended"
-                  onClick={() => {
-                    setValue(3); //project page have index = 3
-                    setIsSpy(false);
-                    setTimeout(() => {
-                      setIsSpy(true);
-                    }, 1000);
-                    scroller.scrollTo("project", {
-                      smooth: true,
-                      duration: 600,
-                      offset: -64,
-                    });
-                  }}
-                >
-                  Project
-                </Fab>
-              </div>
-            </Grid>
+      <div className="waveEffect">
+        <Container id="home">
+          <div className={classes.home}>
             <Grid
-              item
               container
-              sm={6}
-              sx={{ display: { xs: "none", sm: "flex" } }}
-              className={classes.right}
+              // sx={{
+              //   background:
+              //     "radial-gradient(circle, #424242 , #303030, #212121 90%)",
+              //   maxWidth: "1600px",
+              //   marginLeft: "auto",
+              //   marginRight: "auto",
+              // }}
             >
-              <div className={classes.pictureBox}>
-                <div className={classes.pictrue} />
-              </div>
+              <Grid item container sm={6} xs={12} className={classes.left}>
+                <Typography
+                  sx={{ textAlign: { xs: "center", sm: "left" } }}
+                  className={classes.greeting}
+                >
+                  Hello, my name is{" "}
+                  <span
+                    style={{
+                      fontWeight: 800,
+                      fontFamily: "Raleway, sans-serif",
+                    }}
+                  >
+                    Nguyen Phuc Ho
+                  </span>
+                </Typography>
+                <Typography
+                  sx={{ textAlign: { xs: "center", sm: "left" } }}
+                  className={classes.introduce}
+                >
+                  I'm{" "}
+                  <span style={{ display: "inline-block" }}>
+                    <TypeWriter
+                      options={{ loop: true, cursor: '_' }}
+                      onInit={(typewriter) => {
+                        typewriter
+                          .pauseFor(1000)
+                          .typeString("a Developer")
+                          .pauseFor(1000)
+                          .deleteAll()
+                          .pauseFor(1000)
+                          .typeString("looking for a job")
+                          .pauseFor(1000)
+                          .deleteAll()
+                          .start();
+                      }}
+                    />
+                  </span>
+                </Typography>
+                <Typography
+                  sx={{ textAlign: { xs: "center", sm: "justify" } }}
+                  className={classes.description}
+                >
+                  I'm a Front-End Web Developer. My expertise is to create websites with ReactJS, Redux, JavaScript,...
+                </Typography>
+                <div className={classes.button}>
+                  <Fab
+                    sx={{ mr: 3, minWidth: 120 }}
+                    color="info"
+                    variant="extended"
+                    onClick={() => {
+                      setValue(1); //about page have index = 1
+                      setIsSpy(false);
+                      setTimeout(() => {
+                        setIsSpy(true);
+                      }, 1000);
+                      scroller.scrollTo("about", {
+                        smooth: true,
+                        duration: 600,
+                        offset: -64,
+                      });
+                    }}
+                  >
+                    CV
+                  </Fab>
+                  <Fab
+                    sx={{ minWidth: 120 }}
+                    color="secondary"
+                    variant="extended"
+                    onClick={() => {
+                      setValue(3); //project page have index = 3
+                      setIsSpy(false);
+                      setTimeout(() => {
+                        setIsSpy(true);
+                      }, 1000);
+                      scroller.scrollTo("project", {
+                        smooth: true,
+                        duration: 600,
+                        offset: -64,
+                      });
+                    }}
+                  >
+                    Project
+                  </Fab>
+                </div>
+              </Grid>
+              <Grid
+                item
+                container
+                sm={6}
+                sx={{ display: { xs: "none", sm: "flex" } }}
+                className={classes.right}
+              >
+                <div className={classes.pictureBox}>
+                  <div className={classes.pictrue} />
+                </div>
+              </Grid>
             </Grid>
-          </Grid>
-        </div>
-      </Container>
+          </div>
+        </Container>
+      </div>
     </AnimatedPage>
   );
 }
