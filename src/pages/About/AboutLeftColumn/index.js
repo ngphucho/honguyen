@@ -143,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AboutLeftColumn({ data, setValue, setIsSpy }) {
+export default function AboutLeftColumn({ data, setValue, setIsSpy, setName }) {
   const theme = useTheme();
   const classes = useStyles();
   const navigate = useNavigate();
@@ -244,6 +244,7 @@ export default function AboutLeftColumn({ data, setValue, setIsSpy }) {
             sx={{ mx: "auto", minWidth: 120 }}
             onClick={() => {
               setValue(4); //contact page have index = 4
+              setName("contact");
               setIsSpy(false);
               setTimeout(() => {
                 setIsSpy(true);

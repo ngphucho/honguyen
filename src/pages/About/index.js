@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function About({ setValue, setIsSpy }) {
+export default function About({ setValue, setIsSpy, setName }) {
   const classes = useStyles();
   const [error, setError] = useState(null);
   const [aboutData, setAboutData] = useState([]);
@@ -65,6 +65,7 @@ export default function About({ setValue, setIsSpy }) {
                     data={aboutData}
                     setValue={setValue}
                     setIsSpy={setIsSpy}
+                    setName={setName}
                   />
                 </Grid>
 

@@ -41,6 +41,7 @@ export default function AppLayout() {
   const [tabInfo, setTabInfo] = useState([]);
   const [value, setValue] = useState(0);
   const [isSpy, setIsSpy] = useState(true);
+  const [name, setName] = useState("");
 
   const handleChange = (e, value) => {
     setValue(value);
@@ -89,10 +90,20 @@ export default function AppLayout() {
           setValue={setValue}
           isSpy={isSpy}
           setIsSpy={setIsSpy}
+          name={name}
+          setName={setName}
         />
         <div className={classes.mainBody}>
-          <Home setValue={setValue} setIsSpy={setIsSpy}/>
-          <About setValue={setValue} setIsSpy={setIsSpy} />
+          <Home
+            setValue={setValue}
+            setIsSpy={setIsSpy}
+            setName={setName}
+          />
+          <About
+            setValue={setValue}
+            setIsSpy={setIsSpy}
+            setName={setName}
+          />
           <Project />
           <Contact />
         </div>
@@ -102,6 +113,7 @@ export default function AppLayout() {
           tabInfo={tabInfo}
           isSpy={isSpy}
           setIsSpy={setIsSpy}
+          setName={setName}
         />
       </div>
     );

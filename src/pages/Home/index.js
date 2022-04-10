@@ -112,10 +112,10 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       filter: "grayscale(50%)",
     },
-  }
+  },
 }));
 
-export default function Home({ setValue, setIsSpy }) {
+export default function Home({ setValue, setIsSpy, setName }) {
   const classes = useStyles();
   // waveEffect
   useEffect(() => {
@@ -163,7 +163,7 @@ export default function Home({ setValue, setIsSpy }) {
                   I'm{" "}
                   <span style={{ display: "inline-block" }}>
                     <TypeWriter
-                      options={{ loop: true, cursor: '_' }}
+                      options={{ loop: true, cursor: "_" }}
                       onInit={(typewriter) => {
                         typewriter
                           .pauseFor(1000)
@@ -183,7 +183,8 @@ export default function Home({ setValue, setIsSpy }) {
                   sx={{ textAlign: { xs: "center", sm: "justify" } }}
                   className={classes.description}
                 >
-                  I'm a Front-End Web Developer. My expertise is to create websites with ReactJS, Redux, JavaScript,...
+                  I'm a Front-End Web Developer. My expertise is to create
+                  websites with ReactJS, Redux, JavaScript,...
                 </Typography>
                 <div className={classes.button}>
                   <Fab
@@ -192,6 +193,7 @@ export default function Home({ setValue, setIsSpy }) {
                     variant="extended"
                     onClick={() => {
                       setValue(1); //about page have index = 1
+                      setName("about");
                       setIsSpy(false);
                       setTimeout(() => {
                         setIsSpy(true);
@@ -211,6 +213,7 @@ export default function Home({ setValue, setIsSpy }) {
                     variant="extended"
                     onClick={() => {
                       setValue(3); //project page have index = 3
+                      setName("project");
                       setIsSpy(false);
                       setTimeout(() => {
                         setIsSpy(true);

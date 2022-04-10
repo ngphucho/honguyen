@@ -59,11 +59,12 @@ export default function Header({
   tabInfo,
   isSpy,
   setIsSpy,
+  name,
+  setName,
 }) {
   const classes = useStyles();
   const theme = useTheme();
   const matchMD = useMediaQuery(theme.breakpoints.up("md"));
-  const [name, setName] = useState("");
 
   const tabs = (
     <React.Fragment>
