@@ -31,8 +31,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         {/* <AnimatePresence exitBeforeEnter> */}
-        <AppLayout />
-        
+        <Routes>
+          <Route index element={<AppLayout />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+        {/* <AppLayout /> */}
       </BrowserRouter>
     </ThemeProvider>
     // </Suspense>

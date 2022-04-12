@@ -18,6 +18,7 @@ import GithubIcon from "../../assets/icons/icons8-github.svg";
 import Lottie from "react-lottie";
 import animationData from "../../assets/lotties/software-development.json";
 import { Link as Scroll } from "react-scroll";
+import MyMarquee from "../MyMarquee";
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
@@ -45,7 +46,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Footer({ value: index, setValue, tabInfo: menu, isSpy, setIsSpy }) {
+export default function Footer({
+  value: index,
+  setValue,
+  tabInfo: menu,
+  isSpy,
+  setIsSpy,
+}) {
   const navigate = useNavigate();
   const classes = useStyles();
   const defaultOtions = {
@@ -59,9 +66,11 @@ export default function Footer({ value: index, setValue, tabInfo: menu, isSpy, s
   return (
     <div className="footer">
       <Grid container className={classes.footerContainer}>
+        {/* Lottie Icon */}
         <Grid item xs>
           <Lottie options={defaultOtions} height={100} width={100} />
         </Grid>
+        {/* Footer Navigator */}
         <Grid
           item
           container
@@ -102,6 +111,7 @@ export default function Footer({ value: index, setValue, tabInfo: menu, isSpy, s
             ))}
           </List>
         </Grid>
+        {/* Follow */}
         <Grid
           item
           container
@@ -135,6 +145,11 @@ export default function Footer({ value: index, setValue, tabInfo: menu, isSpy, s
             </Link>
           </Stack>
         </Grid>
+        {/* Marquee */}
+        <Grid item xs sx={{ backgroundColor: "#ffffff05", mt: 2 }}>
+          <MyMarquee />
+        </Grid>
+        {/* Copyright */}
         <Grid
           item
           container
