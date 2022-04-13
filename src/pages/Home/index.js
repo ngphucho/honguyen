@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     alignContent: "stretch",
     // marginBottom: "-1.5rem",
   },
+  // waveEffect: {
+  //   background: "radial-gradient(circle, #424242 , #303030, #212121 90%)",
+  // },
   left: {
     "&.MuiGrid-root": {
       display: "flex",
@@ -128,19 +131,11 @@ export default function Home({ setValue, setIsSpy, setName }) {
   }, []);
   return (
     <AnimatedPage>
-      <div className="waveEffect">
+      <div className={`${classes.waveEffect} waveEffect`}>
         <Container id="home">
           <div className={classes.home}>
-            <Grid
-              container
-              // sx={{
-              //   background:
-              //     "radial-gradient(circle, #424242 , #303030, #212121 90%)",
-              //   maxWidth: "1600px",
-              //   marginLeft: "auto",
-              //   marginRight: "auto",
-              // }}
-            >
+            <Grid container>
+              {/* Left */}
               <Grid item container sm={6} xs={12} className={classes.left}>
                 <Typography
                   sx={{ textAlign: { xs: "center", sm: "left" } }}
@@ -229,6 +224,7 @@ export default function Home({ setValue, setIsSpy, setName }) {
                   </Fab>
                 </div>
               </Grid>
+              {/* Right */}
               <Grid
                 item
                 container
