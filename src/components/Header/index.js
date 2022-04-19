@@ -6,7 +6,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { makeStyles } from "@mui/styles";
-import { useNavigate, useLocation } from "react-router-dom";
 import MyDrawer from "../MyDrawer";
 import { Container, Typography, IconButton } from "@mui/material";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
