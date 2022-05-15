@@ -120,11 +120,11 @@ export default function About({ inViewport }) {
                       display: "block",
                       borderRadius: 5,
                       transition: "all 1s",
-                      height: !inViewport ? "100%" : "0px",
+                      height: !inViewport ? "auto" : "0px",
                       opacity: !inViewport ? 1 : 0,
                       transform: !inViewport
                         ? "translateY(0)"
-                        : "translateY(20px)",
+                        : "translateY(-20px)",
                     }}
                   />
                 </Grid>
