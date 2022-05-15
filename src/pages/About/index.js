@@ -1,9 +1,20 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
-import Grid from "@mui/material/Grid";
 // import { aboutData } from "../../assets/Data/aboutData";
 import aboutAPI from "../../services/aboutAPI";
-import { Card, Container, Typography, Fab, Stack } from "@mui/material";
+import {
+  Card,
+  Container,
+  Typography,
+  Fab,
+  Stack,
+  Grid,
+  Icon,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+} from "@mui/material";
 import Underline from "../../components/Underline";
 import avatar2 from "../../assets/images/avatar2.jpg";
 import { scroller } from "react-scroll";
@@ -42,6 +53,19 @@ const useStyles = makeStyles((theme) => ({
   fab: {
     "&.MuiFab-root": {
       minWidth: 150,
+    },
+  },
+  listItemIcon: {
+    "&.MuiListItemIcon-root": {
+      marginTop: "4px",
+      marginBottom: "4px",
+      alignSelf: "flex-start",
+      color: theme.palette.common.colorLight,
+    },
+  },
+  listItemText: {
+    "&.MuiListItemText-root": {
+      color: theme.palette.common.colorLight,
     },
   },
 }));
@@ -126,27 +150,40 @@ export default function About({ inViewport }) {
                   />
                 </Grid>
                 <Grid item xs={12} sm={9}>
-                  <Typography
-                    sx={{ textAlign: "justify" }}
-                    color={Theme.palette.common.colorLight}
-                  >
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Eaque aliquid libero ea praesentium adipisci explicabo quam
-                    repellat error harum tempore, dolores maxime, asperiores
-                    illo maiores. Itaque, neque possimus maxime amet voluptate
-                    nam ducimus sit saepe. Corporis assumenda animi dolore culpa
-                    ipsa aut eos, consequuntur aspernatur excepturi tenetur odio
-                    harum vitae rerum temporibus, labore voluptatibus commodi
-                    expedita sint nihil. Quos veritatis voluptatem ex dolorum
-                    animi sunt iusto autem numquam sequi nulla asperiores cumque
-                    nesciunt, eum itaque optio? Facilis error reprehenderit
-                    minima numquam expedita at quia fugiat tempora, nam ratione
-                    odio itaque voluptas voluptatum veniam dolor obcaecati?
-                    Numquam deleniti tenetur tempora quo?
-                  </Typography>
+                  <List>
+                    <ListItem>
+                      <ListItemIcon className={classes.listItemIcon}>
+                        <Icon>lens_blur</Icon>
+                      </ListItemIcon>
+                      <ListItemText className={classes.listItemText}>
+                        I took the Front-End Programming course at Cybersoft
+                        Academy.
+                      </ListItemText>
+                    </ListItem>
+                    <ListItem>
+                      <ListItemIcon className={classes.listItemIcon}>
+                        <Icon>lens_blur</Icon>
+                      </ListItemIcon>
+                      <ListItemText className={classes.listItemText}>
+                        I have an understanding of object-oriented programming,
+                        data structures, programming techniques.
+                      </ListItemText>
+                    </ListItem>
+                    <ListItem>
+                      <ListItemIcon className={classes.listItemIcon}>
+                        <Icon>lens_blur</Icon>
+                      </ListItemIcon>
+                      <ListItemText className={classes.listItemText}>
+                        I have the necessary skills to build a website on the
+                        client side like: ReactJS, HTML, CSS, JavaScript,
+                        combined with some libraries like Boostrap, MaterialUI.
+                      </ListItemText>
+                    </ListItem>
+                  </List>
                   <Stack
                     direction="row"
-                    justifyContent={{ xs: "center", sm: "flex-start" }}
+                    // justifyContent={{ xs: "center", sm: "flex-start" }}
+                    justifyContent="center"
                     mt="20px"
                     spacing="20px"
                   >
