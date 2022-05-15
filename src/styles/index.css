@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   /* max-width: 1400px; */
   margin: 0 auto;
@@ -6,7 +10,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: #212121; */
+  font-family: "Poppins", sans-serif;
+  background-color: #1f1f38;
 }
 
 code {
@@ -33,6 +38,10 @@ select:-webkit-autofill:focus {
   background-clip: padding-box;
 }
 
-.page:nth-child(even) {
+/* .page:nth-child(even) {
   background-color: #424242;
+} */
+
+.waveEffect {
+  width: calc(100% - 0.5em);
 }

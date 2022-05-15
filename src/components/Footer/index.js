@@ -19,10 +19,13 @@ import Lottie from "react-lottie";
 import animationData from "../../assets/lotties/software-development.json";
 import { Link as Scroll } from "react-scroll";
 import MyMarquee from "../MyMarquee";
+import Theme from "../UI/Theme";
+
+const scrollOffset = 0;
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
-    backgroundColor: "#191919",
+    backgroundColor: theme.palette.common.colorBGVariant,
     minHeight: 64,
     "&.MuiGrid-root": {
       flexDirection: "column",
@@ -32,7 +35,10 @@ const useStyles = makeStyles((theme) => ({
     "&.MuiAvatar-root": {
       width: 50,
       height: 50,
-      backgroundColor: "#fff",
+      backgroundColor: theme.palette.common.colorPrimaryVariant,
+    },
+    "&:hover": {
+      backgroundColor: theme.palette.common.colorPrimary,
     },
   },
   iconContainer: {
@@ -92,7 +98,7 @@ export default function Footer({
                     smooth={true}
                     spy={isSpy}
                     duration={600}
-                    offset={-64}
+                    offset={scrollOffset}
                     onSetActive={() => {
                       setValue(item.index);
                     }}
@@ -153,11 +159,15 @@ export default function Footer({
         <Grid
           item
           container
-          sx={{ justifyContent: "center", padding: 2, bgcolor: "#424242" }}
+          sx={{
+            justifyContent: "center",
+            padding: 2,
+            bgcolor: Theme.palette.common.colorBG,
+          }}
         >
           <Typography
             color="lightgrey"
-            style={{ fontFamily: "Raleway, sans-serif" }}
+            // style={{ fontFamily: "Raleway, sans-serif" }}
           >
             © 2022 Nguyễn Phúc Hồ
           </Typography>

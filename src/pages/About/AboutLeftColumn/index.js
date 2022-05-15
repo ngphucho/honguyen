@@ -15,6 +15,7 @@ import {
   Fab,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import myPicture from "../../../assets/images/avatar.jpg";
 import myAvatar from "../../../assets/images/file004511.png";
 
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
@@ -148,118 +149,127 @@ export default function AboutLeftColumn({ data, setValue, setIsSpy, setName }) {
   const classes = useStyles();
   const navigate = useNavigate();
   return (
-    <Grid item className={classes.mainGrid}>
-      <Card sx={{ backgroundColor: "transparent", boxShadow: 0 }}>
-        <CardContent>
-          <Grid container flexDirection={"column"}>
-            <Grid item>
-              <Avatar className={classes.avatar} alt="Ho Nguyen" src={myAvatar}>
-                H
-              </Avatar>
-            </Grid>
-            <Grid item>
+    <React.Fragment>
+      <div>
+        <img alt="myPicture" src={myPicture} width="100%"/>
+      </div>
+      {/* <Grid item className={classes.mainGrid}>
+        <Card sx={{ backgroundColor: "transparent", boxShadow: 0 }}>
+          <CardContent>
+            <Grid container flexDirection={"column"}>
               <Grid item>
-                <Typography
-                  variant="h5"
-                  sx={{ fontSize: 20, margin: "10px auto 0 auto" }}
-                  textAlign="center"
+                <Avatar
+                  className={classes.avatar}
+                  alt="Ho Nguyen"
+                  src={myAvatar}
                 >
-                  {data.name}
-                </Typography>
+                  H
+                </Avatar>
               </Grid>
               <Grid item>
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: 14 }}
-                  textAlign="center"
-                >
-                  {data.major}
-                </Typography>
+                <Grid item>
+                  <Typography
+                    variant="h5"
+                    sx={{ fontSize: 20, margin: "10px auto 0 auto" }}
+                    textAlign="center"
+                  >
+                    {data.name}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontSize: 14 }}
+                    textAlign="center"
+                  >
+                    {data.major}
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
 
-            <List>
-              {/* gioi tinh */}
-              <ListItem className={classes.listItemContainer}>
-                <ListItemAvatar className={classes.listItemAvatarContainer}>
-                  <Avatar className={classes.avatarContainer}>
-                    <AccountBoxIcon className={classes.iconContainer} />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText className={classes.listItemTextContainer}>
-                  {data.gender}
-                </ListItemText>
-              </ListItem>
-              {/* sinh nhat */}
-              <ListItem className={classes.listItemContainer}>
-                <ListItemAvatar className={classes.listItemAvatarContainer}>
-                  <Avatar className={classes.avatarContainer}>
-                    <CalendarTodayIcon className={classes.iconContainer} />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText className={classes.listItemTextContainer}>
-                  {data.birthday}
-                </ListItemText>
-              </ListItem>
-              {/* so dien thoai */}
-              <ListItem className={classes.listItemContainer}>
-                <ListItemAvatar className={classes.listItemAvatarContainer}>
-                  <Avatar className={classes.avatarContainer}>
-                    <PhoneIphoneIcon className={classes.iconContainer} />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText className={classes.listItemTextContainer}>
-                  {data.phoneNumber}
-                </ListItemText>
-              </ListItem>
-              {/* email */}
-              <ListItem className={classes.listItemContainer}>
-                <ListItemAvatar className={classes.listItemAvatarContainer}>
-                  <Avatar className={classes.avatarContainer}>
-                    <EmailIcon className={classes.iconContainer} />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText className={classes.listItemTextContainer}>
-                  {data.email}
-                </ListItemText>
-              </ListItem>
-              {/* dia chi */}
-              <ListItem className={classes.listItemContainer}>
-                <ListItemAvatar className={classes.listItemAvatarContainer}>
-                  <Avatar className={classes.avatarContainer}>
-                    <LocationOnIcon className={classes.iconContainer} />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText className={classes.listItemTextContainer}>
-                  {data.address}
-                </ListItemText>
-              </ListItem>
-            </List>
-          </Grid>
-        </CardContent>
-        <CardActions>
-          <Fab
-            variant="extended"
-            color="primary"
-            sx={{ mx: "auto", minWidth: 120 }}
-            onClick={() => {
-              setValue(4); //contact page have index = 4
-              setName("contact");
-              setIsSpy(false);
-              setTimeout(() => {
-                setIsSpy(true);
-              }, 1000);
-              scroller.scrollTo("contact", {
-                smooth: true,
-                duration: 600,
-                offset: -64,
-              });
-            }}
-          >
-            Contact
-          </Fab>
-        </CardActions>
-      </Card>
-    </Grid>
+  <List> */}
+      {/* gioi tinh */}
+      {/* <ListItem className={classes.listItemContainer}>
+                  <ListItemAvatar className={classes.listItemAvatarContainer}>
+                    <Avatar className={classes.avatarContainer}>
+                      <AccountBoxIcon className={classes.iconContainer} />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText className={classes.listItemTextContainer}>
+                    {data.gender}
+                  </ListItemText>
+                </ListItem> */}
+      {/* sinh nhat */}
+      {/* <ListItem className={classes.listItemContainer}>
+                  <ListItemAvatar className={classes.listItemAvatarContainer}>
+                    <Avatar className={classes.avatarContainer}>
+                      <CalendarTodayIcon className={classes.iconContainer} />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText className={classes.listItemTextContainer}>
+                    {data.birthday}
+                  </ListItemText>
+                </ListItem> */}
+      {/* so dien thoai */}
+      {/* <ListItem className={classes.listItemContainer}>
+                  <ListItemAvatar className={classes.listItemAvatarContainer}>
+                    <Avatar className={classes.avatarContainer}>
+                      <PhoneIphoneIcon className={classes.iconContainer} />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText className={classes.listItemTextContainer}>
+                    {data.phoneNumber}
+                  </ListItemText>
+                </ListItem> */}
+      {/* email */}
+      {/* <ListItem className={classes.listItemContainer}>
+                  <ListItemAvatar className={classes.listItemAvatarContainer}>
+                    <Avatar className={classes.avatarContainer}>
+                      <EmailIcon className={classes.iconContainer} />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText className={classes.listItemTextContainer}>
+                    {data.email}
+                  </ListItemText>
+                </ListItem> */}
+      {/* dia chi */}
+      {/* <ListItem className={classes.listItemContainer}>
+                  <ListItemAvatar className={classes.listItemAvatarContainer}>
+                    <Avatar className={classes.avatarContainer}>
+                      <LocationOnIcon className={classes.iconContainer} />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText className={classes.listItemTextContainer}>
+                    {data.address}
+                  </ListItemText>
+                </ListItem>
+              </List>
+            </Grid>
+          </CardContent>
+          <CardActions>
+            <Fab
+              variant="extended"
+              color="primary"
+              sx={{ mx: "auto", minWidth: 120 }}
+              onClick={() => {
+                setValue(4); //contact page have index = 4
+                setName("contact");
+                setIsSpy(false);
+                setTimeout(() => {
+                  setIsSpy(true);
+                }, 1000);
+                scroller.scrollTo("contact", {
+                  smooth: true,
+                  duration: 600,
+                  offset: -64,
+                });
+              }}
+            >
+              Contact
+            </Fab>
+          </CardActions>
+        </Card>
+      </Grid> */}
+    </React.Fragment>
   );
 }

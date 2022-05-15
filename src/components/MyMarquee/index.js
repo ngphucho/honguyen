@@ -46,8 +46,9 @@ export default function MyMarquee() {
         gradient={false}
         style={{ overflow: "hidden" }}
       >
-        {data.map((item) => (
+        {data.map((item, i) => (
           <Box
+            key={i}
             className={classes.box}
             sx={{
               fontSize: { xs: 14, sm: 16, md: 20 },

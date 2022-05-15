@@ -165,7 +165,7 @@ export default function AboutRightColumn({ data }) {
       </div>
 
       {/* hoc van */}
-      <div className={classes.row}>
+      {/* <div className={classes.row}>
         <div className={classes.cardContainer}>
           <Card variant="outlined" className={classes.card}>
             <Typography className={classes.cardTitle}>
@@ -184,13 +184,13 @@ export default function AboutRightColumn({ data }) {
             ))}
           </Card>
         </div>
-      </div>
+      </div> */}
 
       {/* ky nang */}
-      <div className={classes.row}>
-        <Grid item container spacing={3}>
+      {/* <div className={classes.row}>
+        <Grid item container spacing={3}> */}
           {/* ngon ngu lap trinh */}
-          {data.skill.map((item, i) => (
+          {/* {data.skill.map((item, i) => (
             <Grid key={i} className={classes.gridColumn} item xs={12} md={4}>
               <div className={classes.cardContainer}>
                 <Card variant="outlined" className={classes.card}>
@@ -202,10 +202,8 @@ export default function AboutRightColumn({ data }) {
                       <ListItem key={k}>
                         <ListItemAvatar>
                           <Avatar
-                            // src={MuiIcon}
                             variant={item.squareBorder ? "square" : "circular"}
                           >
-                            {/* <CodeIcon /> */}
                             <Icon sx={{ textAlign: "center" }}>
                               <img
                                 src={obj.iconURL}
@@ -225,7 +223,7 @@ export default function AboutRightColumn({ data }) {
             </Grid>
           ))}
         </Grid>
-      </div>
+      </div> */}
     </React.Fragment>
   );
 }

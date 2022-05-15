@@ -24,9 +24,9 @@ const EditContact = lazy(() => import("./pages/EditContact"));
 const EditProject = lazy(() => import("./pages/EditProject"));
 
 function App() {
-  useEffect(() => {
-    smoothScroll.init();
-  }, []);
+  // useEffect(() => {
+  //   smoothScroll.init();
+  // }, []);
   return (
     // <Suspense fallback={<Loading />}>
     <ThemeProvider theme={theme}>

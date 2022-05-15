@@ -1,22 +1,24 @@
 import React, { useEffect } from "react";
-import AnimatedPage from "../../components/AnimatedPage";
 import { makeStyles } from "@mui/styles";
-import { Grid, Typography, Fab, Container } from "@mui/material";
+import { Grid, Typography, Fab, Container, Avatar } from "@mui/material";
 import { scroller } from "react-scroll";
 import $ from "jquery";
 import "jquery.ripples";
 import TypeWriter from "typewriter-effect";
+import Follow from "../../components/Follow";
+import myAvatar from "../../assets/images/file004511.png";
+import background from "../../assets/images/bg.png";
+import Theme from "../../components/UI/Theme";
+
+const scrollOffset = 0;
+const scrollDuration = 2000;
 
 const useStyles = makeStyles((theme) => ({
   home: {
-    minHeight: "calc(100vh - 64px)",
-    display: "flex",
-    alignContent: "stretch",
+    height: "100vh",
+    overflow: "hidden",
     // marginBottom: "-1.5rem",
   },
-  // waveEffect: {
-  //   background: "radial-gradient(circle, #424242 , #303030, #212121 90%)",
-  // },
   left: {
     "&.MuiGrid-root": {
       display: "flex",
@@ -39,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     "&.MuiTypography-root": {
       marginBottom: "1rem",
       color: theme.palette.common.textColor2,
-      fontSize: "2.5em",
+      fontSize: "1.5em",
       [theme.breakpoints.down("md")]: {
         fontSize: "2em",
       },
@@ -59,6 +61,37 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "center",
     },
   },
+  avatarBox: {
+    position: "relative",
+    marginTop: 40,
+    width: 240,
+    height: 240,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: `linear-gradient(transparent 0%, transparent 5%, ${
+      theme.palette.common.colorPrimary + "40"
+    } 50%,${theme.palette.common.colorPrimary} 100%)`,
+    borderRadius: "50%",
+    "&::before": {
+      content: "''",
+      display: "block",
+      width: 230,
+      height: 230,
+      borderRadius: "50%",
+      backgroundColor: "#1f1f38",
+      backgroundImage: `url(${background})`,
+    },
+  },
+  avatar: {
+    "&.MuiAvatar-root": {
+      position: "absolute",
+      backgroundColor: "#1f1f38",
+      backgroundImage: `url(${background})`,
+      width: 200,
+      height: 200,
+    },
+  },
   right: {
     "&.MuiGrid-root": {
       // display: "flex",
@@ -67,50 +100,22 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   pictureBox: {
-    minWidth: 260,
-    width: "60%",
-    height: "75%",
-    backgroundColor: theme.palette.common.bg2,
-    position: "relative",
-    overflow: "visible",
-    zIndex: 1,
-    "&::before": {
-      content: '""',
-      display: "block",
-      width: "70%",
-      height: "70%",
-      backgroundColor: "inherit",
-      position: "absolute",
-      left: -10,
-      top: -10,
-      zIndex: 0,
-      transition: "all .6s",
-    },
-    "&::after": {
-      content: '""',
-      display: "block",
-      width: "70%",
-      height: "70%",
-      backgroundColor: "inherit",
-      position: "absolute",
-      right: -10,
-      bottom: -10,
-      zIndex: 0,
-      transition: "all .6s",
-    },
-    "&:hover::after, &:hover::before": {
-      boxShadow: "rgba(255, 255, 255, 0.5) 0px 0px 16px",
-    },
+    marginTop: 20,
+    width: "16rem",
+    height: "20rem",
+    background: `linear-gradient(${theme.palette.common.colorPrimary}, transparent)`,
+    borderRadius: "12rem 12rem 0 0",
+    overflow: "hidden",
+    position: "absolute",
+    bottom: 0,
   },
   pictrue: {
-    position: "relative",
     width: "100%",
     height: "100%",
-    backgroundColor: "inherit",
+    backgroundColor: "transparent",
     backgroundImage: "url(/images/avatar.jpg)",
     filter: "grayscale(80%)",
     backgroundSize: "cover",
-    zIndex: 1,
     transition: "all 3s",
     "&:hover": {
       filter: "grayscale(50%)",
@@ -118,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home({ setValue, setIsSpy, setName }) {
+export default function Home({ myRef, inViewport }) {
   const classes = useStyles();
   // waveEffect
   useEffect(() => {
@@ -127,119 +132,109 @@ export default function Home({ setValue, setIsSpy, setName }) {
       perturbance: 0.03,
       resolution: 512,
     });
-    // return $(".homme").ripples("destroy");
+    // return $(".waveEffect").ripples("destroy");
   }, []);
   return (
-    <AnimatedPage>
-      <div className={`${classes.waveEffect} waveEffect`}>
-        <Container id="home">
-          <div className={classes.home}>
-            <Grid container>
-              {/* Left */}
-              <Grid item container sm={6} xs={12} className={classes.left}>
-                <Typography
-                  sx={{ textAlign: { xs: "center", sm: "left" } }}
-                  className={classes.greeting}
-                >
-                  Hello, my name is{" "}
-                  <span
-                    style={{
-                      fontWeight: 800,
-                      fontFamily: "Raleway, sans-serif",
-                    }}
-                  >
-                    Nguyen Phuc Ho
-                  </span>
-                </Typography>
-                <Typography
-                  sx={{ textAlign: { xs: "center", sm: "left" } }}
-                  className={classes.introduce}
-                >
-                  I'm{" "}
-                  <span style={{ display: "inline-block" }}>
-                    <TypeWriter
-                      options={{ loop: true, cursor: "_" }}
-                      onInit={(typewriter) => {
-                        typewriter
-                          .pauseFor(1000)
-                          .typeString("a Developer")
-                          .pauseFor(1000)
-                          .deleteAll()
-                          .pauseFor(1000)
-                          .typeString("looking for a job")
-                          .pauseFor(1000)
-                          .deleteAll()
-                          .start();
-                      }}
-                    />
-                  </span>
-                </Typography>
-                <Typography
-                  sx={{ textAlign: { xs: "center", sm: "justify" } }}
-                  className={classes.description}
-                >
-                  I'm a Front-End Web Developer. My expertise is to create
-                  websites with ReactJS, Redux, JavaScript,...
-                </Typography>
-                <div className={classes.button}>
-                  <Fab
-                    sx={{ mr: 3, minWidth: 120 }}
-                    color="info"
-                    variant="extended"
-                    onClick={() => {
-                      setValue(1); //about page have index = 1
-                      setName("about");
-                      setIsSpy(false);
-                      setTimeout(() => {
-                        setIsSpy(true);
-                      }, 1000);
-                      scroller.scrollTo("about", {
-                        smooth: true,
-                        duration: 600,
-                        offset: -64,
-                      });
-                    }}
-                  >
-                    CV
-                  </Fab>
-                  <Fab
-                    sx={{ minWidth: 120 }}
-                    color="secondary"
-                    variant="extended"
-                    onClick={() => {
-                      setValue(3); //project page have index = 3
-                      setName("project");
-                      setIsSpy(false);
-                      setTimeout(() => {
-                        setIsSpy(true);
-                      }, 1000);
-                      scroller.scrollTo("project", {
-                        smooth: true,
-                        duration: 600,
-                        offset: -64,
-                      });
-                    }}
-                  >
-                    Project
-                  </Fab>
-                </div>
-              </Grid>
-              {/* Right */}
-              <Grid
-                item
-                container
-                sm={6}
-                sx={{ display: { xs: "none", sm: "flex" } }}
-                className={classes.right}
+    <div className="waveEffect">
+      <Container id="home">
+        <div className={classes.home}>
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+            sx={{
+              pt: 5,
+              height: "100%",
+              position: "relative",
+            }}
+          >
+            {/* Left */}
+            <Typography className={classes.greeting}>
+              Hello, my name is{" "}
+              <span
+                style={{
+                  background: Theme.palette.common.colorBGVariant,
+                  padding: 5,
+                  borderRadius: 5,
+                }}
               >
-                <div className={classes.pictureBox}>
-                  <div className={classes.pictrue} />
-                </div>
-              </Grid>
-            </Grid>
-          </div>
-        </Container>
-      </div>
-    </AnimatedPage>
+                Nguyen Phuc Ho
+              </span>
+            </Typography>
+            <Typography className={classes.introduce}>
+              I'm{" "}
+              <span style={{ display: "inline-block" }}>
+                <TypeWriter
+                  options={{ loop: true, cursor: "_" }}
+                  onInit={(typewriter) => {
+                    typewriter
+                      .pauseFor(1000)
+                      .typeString("a Developer")
+                      .pauseFor(1000)
+                      .deleteAll()
+                      .pauseFor(1000)
+                      .typeString("looking for a job")
+                      .pauseFor(1000)
+                      .deleteAll()
+                      .start();
+                  }}
+                />
+              </span>
+            </Typography>
+            <Typography className={classes.description}>
+              I'm a Front-End Web Developer. My expertise is to create websites
+              with ReactJS, Redux, JavaScript,...
+            </Typography>
+            <div className={classes.button}>
+              <Fab
+                sx={{ mr: 3, minWidth: 120 }}
+                color="info"
+                variant="extended"
+                onClick={() => {
+                  scroller.scrollTo("about", {
+                    smooth: true,
+                    duration: scrollDuration,
+                    offset: scrollOffset,
+                  });
+                }}
+              >
+                CV
+              </Fab>
+              <Fab
+                sx={{ minWidth: 120 }}
+                color="secondary"
+                variant="extended"
+                onClick={() => {
+                  scroller.scrollTo("project", {
+                    smooth: true,
+                    duration: scrollDuration,
+                    offset: scrollOffset,
+                  });
+                }}
+              >
+                Project
+              </Fab>
+            </div>
+            <div className={classes.avatarBox} ref={myRef}>
+              <Avatar
+                className={classes.avatar}
+                alt="Ho Nguyen"
+                src={myAvatar}
+                sx={{
+                  transition: "all 1s",
+                  height: inViewport ? "100%" : "0px",
+                  opacity: inViewport ? 1 : 0,
+                  transform: inViewport ? "translateY(0)" : "translateY(20px)",
+                }}
+              >
+                H
+              </Avatar>
+            </div>
+            <Follow />
+          </Grid>
+        </div>
+      </Container>
+    </div>
   );
 }

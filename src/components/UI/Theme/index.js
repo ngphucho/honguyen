@@ -20,6 +20,13 @@ export default createTheme({
       dark: dark,
       light: light,
 
+      colorPrimary: "#4db5ff",
+      colorPrimaryVariant: "rgba(77, 181, 255, 0.4)",
+      colorWhite: "#ffffff",
+      colorLight: "rgba(255, 255, 255, 0.6)",
+      colorBG: "#1f1f38",
+      colorBGVariant: "#2c2c6c",
+
       // background
       bg1: "#e0e0e0",
       bg2: "#bdbdbd",
@@ -32,8 +39,16 @@ export default createTheme({
       pagePaddingTop: "3rem",
       pagePaddingBottom: "3rem",
 
-      //page hight
-      pageMinHight: "calc(100vh - 64px)",
+      //section title
+      sectionTitle: {
+        "&.MuiTypography-root": {
+          color: "#4db5ff",
+          textAlign: "center",
+        },
+      },
+
+      // pageMinHight: "calc(100vh - 64px)",
+      pageMinHight: "100vh",
 
       // row spacing
       row: {
@@ -54,7 +69,14 @@ export default createTheme({
       default: dark,
     },
   },
-  typography: {},
+  typography: {
+    h1: {
+      fontSize: "2rem",
+    },
+    h2: {
+      fontSize: "1.5rem",
+    },
+  },
   mixins: {
     toolbar: {
       minHeight: 64,
@@ -71,16 +93,26 @@ export default createTheme({
     MuiFab: {
       styleOverrides: {
         root: {
-          borderRadius: 0,
-          boxShadow: 0,
+          borderRadius: 5,
+          height: "2.25rem",
+          // boxShadow: 0,
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 0,
-          boxShadow: 0,
+          borderRadius: 5,
+          // boxShadow: 0,
+          textTransform: "none",
+          // height: "2.25rem",
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 5,
         },
       },
     },

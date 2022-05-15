@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import background from "../../assets/images/bg.png";
+import { useIntersection } from "../../hooks/useIntersection";
 
-import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 // import { menu as tabInfo } from "../../assets/Data/menu";
 import { makeStyles } from "@mui/styles";
@@ -9,8 +10,10 @@ import menuAPI from "../../services/menuAPI";
 import Loading from "../../components/Loading";
 import Home from "../../pages/Home";
 import About from "../../pages/About";
-import Project from "../../pages/Project";
-import Contact from "../../pages/Contact";
+import Contact2 from "../../pages/Contact2";
+import Project2 from "../../pages/Project2";
+import Skill from "../../pages/Skill";
+import Navbar from "../../components/Navbar";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -27,9 +30,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   mainBody: {
-    minHeight: "calc(100vh - 64px)",
+    minHeight: "100vh",
     // padding: "1.5rem 0",
-    backgroundColor: "#212121",
+    backgroundColor: "#1f1f38",
+    backgroundImage: `url(${background})`,
+    fontFamily: "'Poppins', sans-serif",
+    color: theme.palette.common.colorWhite,
   },
 }));
 
@@ -42,26 +48,8 @@ export default function AppLayout() {
   const [value, setValue] = useState(0);
   const [isSpy, setIsSpy] = useState(true);
   const [name, setName] = useState("");
-
-  const handleChange = (e, value) => {
-    setValue(value);
-  };
-
-  const findIndexByLocation = (location) => {
-    let index = tabInfo.findIndex((tab) => {
-      return tab.to === location;
-    });
-    if (index < 0) {
-      index = 0;
-    }
-    setValue(tabInfo[index].index);
-  };
-
-  useEffect(() => {
-    if (isLoaded) {
-      findIndexByLocation(location.pathname);
-    }
-  }, [location, isLoaded]);
+  const myRef = useRef();
+  const inViewport = useIntersection(myRef, "-130px");
 
   useEffect(() => {
     menuAPI
@@ -76,46 +64,24 @@ export default function AppLayout() {
       });
   }, []);
 
-  if (error) {
-    return <div>Error:{error.message}</div>;
-  } else if (!isLoaded) {
-    return <Loading />;
-  } else {
-    return (
-      <div className={classes.mainDiv}>
-        <Header
-          value={value}
-          handleChange={handleChange}
-          tabInfo={tabInfo}
-          setValue={setValue}
-          isSpy={isSpy}
-          setIsSpy={setIsSpy}
-          name={name}
-          setName={setName}
-        />
-        <div className={classes.mainBody}>
-          <Home
-            setValue={setValue}
-            setIsSpy={setIsSpy}
-            setName={setName}
-          />
-          <About
-            setValue={setValue}
-            setIsSpy={setIsSpy}
-            setName={setName}
-          />
-          <Project />
-          <Contact />
-        </div>
-        <Footer
-          value={value}
-          setValue={setValue}
-          tabInfo={tabInfo}
-          isSpy={isSpy}
-          setIsSpy={setIsSpy}
-          setName={setName}
-        />
+  return (
+    <div className={classes.mainDiv}>
+      {isLoaded && <Navbar tabInfo={tabInfo} />}
+      <div className={classes.mainBody}>
+        <Home myRef={myRef} inViewport={inViewport} />
+        <About inViewport={inViewport} />
+        <Skill />
+        <Project2 />
+        <Contact2 />
       </div>
-    );
-  }
+      <Footer
+        value={value}
+        setValue={setValue}
+        tabInfo={tabInfo}
+        isSpy={isSpy}
+        setIsSpy={setIsSpy}
+        setName={setName}
+      />
+    </div>
+  );
 }
