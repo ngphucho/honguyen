@@ -15,9 +15,10 @@ const scrollDuration = 2000;
 
 const useStyles = makeStyles((theme) => ({
   home: {
-    height: "100vh",
+    minHeight: "100vh",
     overflow: "hidden",
-    // marginBottom: "-1.5rem",
+    display: "flex",
+    alignItems: "center",
   },
   left: {
     "&.MuiGrid-root": {

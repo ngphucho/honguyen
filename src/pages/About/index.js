@@ -89,13 +89,10 @@ export default function About({ inViewport }) {
             <Card
               sx={{
                 flexGrow: 1,
-                width: {
-                  xs: "95%",
-                  md: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                },
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
                 borderRadius: 5,
                 backgroundColor: Theme.palette.common.colorBGVariant,
               }}

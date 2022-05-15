@@ -94,7 +94,7 @@ export default function Skill() {
               My skill
             </Typography>
             <Underline />
-            <Grid container columnSpacing={10} rowSpacing={10}>
+            <Grid container columnSpacing={10} rowSpacing={{ xs: 3, sm: 10 }}>
               {skillData.map((skill, i) => (
                 <Grid key={i} item xs={12} sm={6} lg={4} display="inline-grid">
                   <Card className={classes.card}>

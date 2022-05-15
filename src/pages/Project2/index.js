@@ -51,7 +51,7 @@ export default function Project2() {
               My Project
             </Typography>
             <Underline />
-            <Grid container spacing={10}>
+            <Grid container columnSpacing={10} rowSpacing={{ xs: 3, sm: 10 }}>
               {projectData.map((project, i) => (
                 <Product2 key={i} project={project} i={i} />
               ))}
