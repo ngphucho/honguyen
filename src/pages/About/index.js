@@ -165,6 +165,15 @@ export default function About({ inViewport }) {
                         <Icon>lens_blur</Icon>
                       </ListItemIcon>
                       <ListItemText className={classes.listItemText}>
+                        I graduated as an engineer in information technology
+                        from Saigon University.
+                      </ListItemText>
+                    </ListItem>
+                    <ListItem>
+                      <ListItemIcon className={classes.listItemIcon}>
+                        <Icon>lens_blur</Icon>
+                      </ListItemIcon>
+                      <ListItemText className={classes.listItemText}>
                         I have an understanding of object-oriented programming,
                         data structures, programming techniques.
                       </ListItemText>
@@ -175,7 +184,7 @@ export default function About({ inViewport }) {
                       </ListItemIcon>
                       <ListItemText className={classes.listItemText}>
                         I have the necessary skills to build a website on the
-                        client side like: ReactJS, HTML, CSS, JavaScript,
+                        client side like: ReactJS, Redux, HTML, CSS, JavaScript,
                         combined with some libraries like Boostrap, MaterialUI.
                       </ListItemText>
                     </ListItem>

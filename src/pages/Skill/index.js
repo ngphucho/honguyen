@@ -113,7 +113,7 @@ export default function Skill() {
                           <ListItemText
                             className={classes.listItemText}
                             primary={subSkill.name}
-                            secondary={subSkill.name}
+                            secondary={subSkill.level}
                           />
                         </ListItem>
                       ))}
