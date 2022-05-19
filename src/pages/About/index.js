@@ -27,10 +27,8 @@ const scrollDuration = 2000;
 const useStyles = makeStyles((theme) => ({
   about: {
     minHeight: theme.palette.common.pageMinHight,
-    // height: "100vh",
     paddingTop: theme.palette.common.pagePaddingTop,
     paddingBottom: theme.palette.common.pagePaddingBottom,
-    // backgroundColor: "#003e00",
     boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
@@ -151,43 +149,16 @@ export default function About({ inViewport }) {
                 </Grid>
                 <Grid item xs={12} sm={9}>
                   <List>
-                    <ListItem>
-                      <ListItemIcon className={classes.listItemIcon}>
-                        <Icon>lens_blur</Icon>
-                      </ListItemIcon>
-                      <ListItemText className={classes.listItemText}>
-                        I took the Front-End Programming course at Cybersoft
-                        Academy.
-                      </ListItemText>
-                    </ListItem>
-                    <ListItem>
-                      <ListItemIcon className={classes.listItemIcon}>
-                        <Icon>lens_blur</Icon>
-                      </ListItemIcon>
-                      <ListItemText className={classes.listItemText}>
-                        I graduated as an engineer in information technology
-                        from Saigon University.
-                      </ListItemText>
-                    </ListItem>
-                    <ListItem>
-                      <ListItemIcon className={classes.listItemIcon}>
-                        <Icon>lens_blur</Icon>
-                      </ListItemIcon>
-                      <ListItemText className={classes.listItemText}>
-                        I have an understanding of object-oriented programming,
-                        data structures, programming techniques.
-                      </ListItemText>
-                    </ListItem>
-                    <ListItem>
-                      <ListItemIcon className={classes.listItemIcon}>
-                        <Icon>lens_blur</Icon>
-                      </ListItemIcon>
-                      <ListItemText className={classes.listItemText}>
-                        I have the necessary skills to build a website on the
-                        client side like: ReactJS, Redux, HTML, CSS, JavaScript,
-                        combined with some libraries like Boostrap, MaterialUI.
-                      </ListItemText>
-                    </ListItem>
+                    {aboutData.intro.content.map((item, i) => (
+                      <ListItem key={i}>
+                        <ListItemIcon className={classes.listItemIcon}>
+                          <Icon>{aboutData.intro.icon}</Icon>
+                        </ListItemIcon>
+                        <ListItemText className={classes.listItemText}>
+                          {item}
+                        </ListItemText>
+                      </ListItem>
+                    ))}
                   </List>
                   <Stack
                     direction="row"
